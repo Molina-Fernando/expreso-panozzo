@@ -27,9 +27,7 @@ public class VentanaDB {
             psi.setString(1, nombreCiudad);
             
             psi.executeUpdate();
-            
-            System.out.println("ANDUVO");
-            
+                       
         } catch (SQLException e) {
             System.out.println("EXCEP SQL" + e);
             JOptionPane.showMessageDialog(null, "¡Error! Contacte al administrador");
