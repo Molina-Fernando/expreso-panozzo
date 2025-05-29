@@ -6,6 +6,9 @@ package Vista;
 
 
 import Controlador.VentanaControlador;
+import Utilidades.MostrarPanel;
+import Vista.panelGuia;
+import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
@@ -40,39 +43,41 @@ public class Ventana extends javax.swing.JFrame {
     private void initComponents() {
 
         panelMenu = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnClientes = new javax.swing.JButton();
+        btnGuias = new javax.swing.JButton();
+        btnConfiguracion = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         labelImagen = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        content = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setPreferredSize(new java.awt.Dimension(1500, 810));
 
         panelMenu.setBackground(new java.awt.Color(0, 0, 153));
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnClientes.setText("jButton1");
+        btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnClientesActionPerformed(evt);
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(51, 255, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 102));
-        jButton2.setText("TEXTO");
-        jButton2.setBorderPainted(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnGuias.setBackground(new java.awt.Color(51, 255, 0));
+        btnGuias.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuias.setForeground(new java.awt.Color(0, 0, 102));
+        btnGuias.setText("TEXTO");
+        btnGuias.setBorderPainted(false);
+        btnGuias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnGuias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnGuiasActionPerformed(evt);
             }
         });
 
-        jButton3.setText("jButton1");
+        btnConfiguracion.setText("jButton1");
 
-        jButton4.setText("jButton1");
+        btnSalir.setText("jButton1");
 
         labelImagen.setText("jLabel1");
 
@@ -84,13 +89,13 @@ public class Ventana extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(labelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(158, 158, 158)
-                .addComponent(jButton2)
+                .addComponent(btnGuias)
                 .addGap(127, 127, 127)
-                .addComponent(jButton1)
+                .addComponent(btnClientes)
                 .addGap(68, 68, 68)
-                .addComponent(jButton3)
+                .addComponent(btnConfiguracion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 403, Short.MAX_VALUE)
-                .addComponent(jButton4)
+                .addComponent(btnSalir)
                 .addGap(195, 195, 195))
         );
         panelMenuLayout.setVerticalGroup(
@@ -102,23 +107,24 @@ public class Ventana extends javax.swing.JFrame {
                     .addGroup(panelMenuLayout.createSequentialGroup()
                         .addGap(0, 16, Short.MAX_VALUE)
                         .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4)
-                            .addComponent(jButton2))))
+                            .addComponent(btnClientes)
+                            .addComponent(btnConfiguracion)
+                            .addComponent(btnSalir)
+                            .addComponent(btnGuias))))
                 .addGap(20, 20, 20))
         );
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        content.setBackground(new java.awt.Color(255, 255, 255));
+        content.setPreferredSize(new java.awt.Dimension(1500, 775));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 775, Short.MAX_VALUE)
         );
 
@@ -127,26 +133,27 @@ public class Ventana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panelMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btnClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btnClientesActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnGuiasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuiasActionPerformed
+        
+        MostrarPanel.showPanel(content, new panelGuia(), 1500 ,775);
+    }//GEN-LAST:event_btnGuiasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,11 +192,11 @@ public class Ventana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton btnClientes;
+    private javax.swing.JButton btnConfiguracion;
+    private javax.swing.JButton btnGuias;
+    private javax.swing.JButton btnSalir;
+    private javax.swing.JPanel content;
     private javax.swing.JLabel labelImagen;
     private javax.swing.JPanel panelMenu;
     // End of variables declaration//GEN-END:variables
