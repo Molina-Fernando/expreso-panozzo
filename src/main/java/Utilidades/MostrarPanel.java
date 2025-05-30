@@ -16,7 +16,6 @@ public class MostrarPanel {
         content.add(p, BorderLayout.CENTER);
         content.revalidate();
         content.repaint();
-                return;
     }
     
 }
