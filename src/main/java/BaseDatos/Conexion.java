@@ -15,12 +15,11 @@ public class Conexion {
      * @return Un objeto Connection activo o null si falla.
      */
     public static Connection conectar() {
-        if (conectar != null) {
-            return conectar;
-        }
-
         try {
-            conectar = DriverManager.getConnection(URL);
+            // Si la conexión ya existe pero está cerrada, abrir una nueva
+            if (conectar == null || conectar.isClosed()) {
+                conectar = DriverManager.getConnection(URL);
+            }
         } catch (SQLException e) {
             System.err.println("Error al conectar con la base de datos: " + e.getMessage());
         }
@@ -28,4 +27,3 @@ public class Conexion {
         return conectar;
     }
 }
-
