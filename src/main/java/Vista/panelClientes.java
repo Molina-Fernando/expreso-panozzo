@@ -1,8 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package Vista;
+
+import Controlador.ClientesControlador;
+import Modelo.Cliente;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -10,12 +15,63 @@ package Vista;
  */
 public class panelClientes extends javax.swing.JPanel {
 
+    ArrayList<Object[]> listaClientes = new ArrayList<>();
+    DefaultTableModel modelo;
+    ClientesControlador ctrlClientes = new ClientesControlador();
+    
     /**
      * Creates new form panelClientes
      */
     public panelClientes() {
         initComponents();
+        modelo = new DefaultTableModel();
+        modelo.addColumn("DNI");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Domicilio");
+        modelo.addColumn("Localidad");
+        modelo.addColumn("Teléfono");
+        
+        listaClientes = ctrlClientes.getTablaClientes();
+        
+        //actualizarTabla(listaClientes, tablaClientes);
+        actualizarTabla();
     }
+
+    /*private void actualizarTabla(ArrayList<Object[]> lista, JTable tabla) {
+        modelo.setRowCount(0);
+        tabla.setModel(modelo);
+
+        //tabla = new JTable(modelo);
+        //jScrollPane1.setViewportView(tabla);
+
+        for (Object[] vector : lista) {
+
+            modelo.addRow(vector);
+        }
+        tabla.setModel(modelo);
+    }*/
+    
+    private void actualizarTabla() {
+        modelo.setRowCount(0);
+        tablaClientes = new javax.swing.JTable();
+        tablaClientes.setModel(modelo);
+        listaClientes = ctrlClientes.getTablaClientes();
+
+        tablaClientes = new JTable(modelo);
+        jScrollPane1.setViewportView(tablaClientes);
+
+        for (Object[] vector : listaClientes) {
+
+            modelo.addRow(vector);
+            tablaClientes.setModel(modelo);
+        }
+    }
+    
+    private void buscarCliente() {
+    String nombre = campoTextoBuscar.getText().trim(); // campoTextoBuscar es tu JTextField
+    ClientesControlador cc = new ClientesControlador();
+    tablaClientes.setModel(cc.buscarClientesPorNombre(nombre));
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,19 +82,115 @@ public class panelClientes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        content = new javax.swing.JPanel();
+        botonBuscar = new javax.swing.JButton();
+        botonEliminarCliente = new javax.swing.JButton();
+        botonEditarCliente = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaClientes = new javax.swing.JTable();
+        campoTextoBuscar = new javax.swing.JTextField();
+
+        setForeground(new java.awt.Color(255, 255, 255));
+        setMinimumSize(new java.awt.Dimension(1500, 775));
+        setPreferredSize(new java.awt.Dimension(1500, 775));
+
+        content.setBackground(new java.awt.Color(255, 51, 51));
+        content.setForeground(new java.awt.Color(102, 102, 0));
+
+        botonBuscar.setText("Buscar");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
+
+        botonEliminarCliente.setText("Eliminar cliente");
+
+        botonEditarCliente.setText("Editar cliente");
+
+        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "DNI", "Nombre", "Domicilio", "Localidad", "Teléfono"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaClientes);
+
+        campoTextoBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoTextoBuscarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
+        content.setLayout(contentLayout);
+        contentLayout.setHorizontalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(contentLayout.createSequentialGroup()
+                        .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBuscar))
+                    .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(contentLayout.createSequentialGroup()
+                            .addGap(6, 6, 6)
+                            .addComponent(botonEliminarCliente)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(botonEditarCliente))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(1019, Short.MAX_VALUE))
+        );
+        contentLayout.setVerticalGroup(
+            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(contentLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonBuscar)
+                    .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonEliminarCliente)
+                    .addComponent(botonEditarCliente))
+                .addContainerGap(266, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(content, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        buscarCliente();
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void campoTextoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoBuscarActionPerformed
+        buscarCliente();
+    }//GEN-LAST:event_campoTextoBuscarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonBuscar;
+    private javax.swing.JButton botonEditarCliente;
+    private javax.swing.JButton botonEliminarCliente;
+    private javax.swing.JTextField campoTextoBuscar;
+    private javax.swing.JPanel content;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }
