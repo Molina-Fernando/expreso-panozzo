@@ -153,11 +153,11 @@ public class ClienteDB {
         Connection conex = null;
         try {
             conex = Conexion.conectar();
-            String query = "SELECT DISTINCT localidad FROM clientes ORDER BY localidad";
+            String query = "SELECT nombre FROM localidades";
             PreparedStatement ps = conex.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                localidades.add(rs.getString("localidad"));
+                localidades.add(rs.getString("nombre"));
             }
         } catch (SQLException e) {
             System.out.println("Error al obtener localidades: " + e);

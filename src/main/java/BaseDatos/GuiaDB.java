@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class GuiaDB {
     
-    public ArrayList <String> resultadosConsulta; 
+    public ArrayList <String> resultadosConsulta = new ArrayList(); 
     
     public ArrayList buscarDNI(String dni){
         Connection conex = null;
@@ -48,7 +48,7 @@ public class GuiaDB {
                 resultadosConsulta.add(rs.getString(4));
                 resultadosConsulta.add(rs.getString(5));
                 
-                 System.out.println(resultadosConsulta);
+                 //System.out.println(resultadosConsulta);
              }
             } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "---");
@@ -62,6 +62,29 @@ public class GuiaDB {
             }
     }
         return resultadosConsulta;
+    }
+    
+        public static ArrayList<String> obtenerLocalidades() {
+        ArrayList<String> localidades = new ArrayList<>();
+        Connection conex = null;
+        try {
+            conex = Conexion.conectar();
+            String query = "SELECT nombre FROM localidades";
+            PreparedStatement ps = conex.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                localidades.add(rs.getString("nombre"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener localidades: " + e);
+        } finally {
+            try {
+                if (conex != null) conex.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return localidades;
     }
     
 

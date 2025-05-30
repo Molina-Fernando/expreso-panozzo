@@ -4,6 +4,9 @@
  */
 package Vista;
 
+import Controlador.GuiaControlador;
+import java.sql.ResultSetMetaData;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -17,8 +20,15 @@ public class panelGuia extends javax.swing.JPanel {
     /**
      * Creates new form panelGuia
      */
+    
+   
     public panelGuia() {
         initComponents();
+        ArrayList<String> localidades = new GuiaControlador().traerLocalidades();
+        for (String loc : localidades) {
+            comboLocalidadesR.addItem(loc);
+            comboLocalidadD.addItem(loc);
+        }
     }
 
     /**
@@ -75,7 +85,7 @@ public class panelGuia extends javax.swing.JPanel {
         jTextField15 = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        button1 = new java.awt.Button();
+        botonBuscarD = new java.awt.Button();
         button2 = new java.awt.Button();
         botonBuscarR = new java.awt.Button();
         button4 = new java.awt.Button();
@@ -145,7 +155,6 @@ public class panelGuia extends javax.swing.JPanel {
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
         jLabel8.setText("LOCALIDAD");
 
-        comboLocalidadesR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboLocalidadesR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboLocalidadesRActionPerformed(evt);
@@ -178,7 +187,6 @@ public class panelGuia extends javax.swing.JPanel {
         jLabel11.setForeground(new java.awt.Color(51, 51, 51));
         jLabel11.setText("LOCALIDAD");
 
-        comboLocalidadD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboLocalidadD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboLocalidadDActionPerformed(evt);
@@ -321,14 +329,14 @@ public class panelGuia extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        button1.setActionCommand("BuscarD");
-        button1.setBackground(new java.awt.Color(0, 46, 83));
-        button1.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        button1.setForeground(new java.awt.Color(127, 241, 82));
-        button1.setLabel("BUSCAR");
-        button1.addActionListener(new java.awt.event.ActionListener() {
+        botonBuscarD.setActionCommand("BuscarD");
+        botonBuscarD.setBackground(new java.awt.Color(0, 46, 83));
+        botonBuscarD.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonBuscarD.setForeground(new java.awt.Color(127, 241, 82));
+        botonBuscarD.setLabel("BUSCAR");
+        botonBuscarD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button1ActionPerformed(evt);
+                botonBuscarDActionPerformed(evt);
             }
         });
 
@@ -422,7 +430,7 @@ public class panelGuia extends javax.swing.JPanel {
                                             .addComponent(jLabel11)
                                             .addComponent(comboLocalidadD, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(47, 47, 47)
-                                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(botonBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(183, 183, 183)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel1)
@@ -486,7 +494,7 @@ public class panelGuia extends javax.swing.JPanel {
                                 .addComponent(jLabel13)
                                 .addGap(15, 15, 15)
                                 .addComponent(campoDniD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(botonBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -630,14 +638,43 @@ public class panelGuia extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField15ActionPerformed
 
-    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+    private void botonBuscarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button1ActionPerformed
+        
+        String dni = campoDniD.getText();
+
+        String patronDNI = "^[0-9]{7,10}$";
+        
+        Pattern patternDNI = Pattern.compile(patronDNI);
+        Matcher matcherDNI = patternDNI.matcher(dni);
+        
+         if (matcherDNI.matches()) {
+         resultadoBusquedaClientes = guiaControlador.buscarDNI(dni);
+             if(!resultadoBusquedaClientes.isEmpty()){
+
+                     campoDniD.setText(resultadoBusquedaClientes.get(0));
+                     campoNombreD.setText(resultadoBusquedaClientes.get(1));
+                     campoDomicilioD.setText(resultadoBusquedaClientes.get(2));
+                     campoTelefonoD.setText(resultadoBusquedaClientes.get(4));
+                     comboLocalidadD.setSelectedItem(resultadoBusquedaClientes.get(3));
+                 
+                 resultadoBusquedaClientes.clear();
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente no registrado");
+             }
+     
+        } else {
+            JOptionPane.showMessageDialog(null, "El DNI no es válido");
+        }
+        
+    }//GEN-LAST:event_botonBuscarDActionPerformed
 
     private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_button2ActionPerformed
 
+private ArrayList <String> resultadoBusquedaClientes = new ArrayList(); 
+    GuiaControlador guiaControlador = new GuiaControlador();
     private void botonBuscarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRActionPerformed
         // TODO add your handling code here:
         String dni = campoDniR.getText();
@@ -648,7 +685,20 @@ public class panelGuia extends javax.swing.JPanel {
         Matcher matcherDNI = patternDNI.matcher(dni);
         
          if (matcherDNI.matches()) {
+         resultadoBusquedaClientes = guiaControlador.buscarDNI(dni);
+             if(!resultadoBusquedaClientes.isEmpty()){
 
+                     campoDniR.setText(resultadoBusquedaClientes.get(0));
+                     campoNombreR.setText(resultadoBusquedaClientes.get(1));
+                     campoDomicilioR.setText(resultadoBusquedaClientes.get(2));
+                     campoTelefonoR.setText(resultadoBusquedaClientes.get(4));
+                    comboLocalidadesR.setSelectedItem(resultadoBusquedaClientes.get(3));
+                 
+                 resultadoBusquedaClientes.clear();
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente no registrado");
+             }
+     
         } else {
             JOptionPane.showMessageDialog(null, "El DNI no es válido");
         }
@@ -661,8 +711,8 @@ public class panelGuia extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button botonBuscarD;
     private java.awt.Button botonBuscarR;
-    private java.awt.Button button1;
     private java.awt.Button button2;
     private java.awt.Button button4;
     private javax.swing.JTextField campoDniD;
