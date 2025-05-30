@@ -1,15 +1,8 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ */
 package Vista;
-
-import Controlador.ClientesControlador;
-import Modelo.Cliente;
-import Utilidades.MostrarPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,92 +10,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class panelClientes extends javax.swing.JPanel {
 
-    ArrayList<Object[]> listaClientes = new ArrayList<>();
-    DefaultTableModel modelo;
-    ClientesControlador ctrlClientes = new ClientesControlador();
-    
     /**
      * Creates new form panelClientes
      */
     public panelClientes() {
         initComponents();
-        
-        //Esconder botones
-        ocultarBotones();
-        //Carga de tabla
-        modelo = new DefaultTableModel();
-        modelo.addColumn("DNI");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Domicilio");
-        modelo.addColumn("Localidad");
-        modelo.addColumn("Teléfono");
-        
-        listaClientes = ctrlClientes.getTablaClientes();
-        
-        //actualizarTabla(listaClientes, tablaClientes);
-        actualizarTabla();
     }
-
-    /*private void actualizarTabla(ArrayList<Object[]> lista, JTable tabla) {
-        modelo.setRowCount(0);
-        tabla.setModel(modelo);
-
-        //tabla = new JTable(modelo);
-        //jScrollPane1.setViewportView(tabla);
-
-        for (Object[] vector : lista) {
-
-            modelo.addRow(vector);
-        }
-        tabla.setModel(modelo);
-    }*/
-    
-    private void actualizarTabla() {
-        modelo.setRowCount(0);
-        tablaClientes = new javax.swing.JTable();
-        tablaClientes.setModel(modelo);
-        listaClientes = ctrlClientes.getTablaClientes();
-
-        tablaClientes = new JTable(modelo);
-        jScrollPane1.setViewportView(tablaClientes);
-
-        for (Object[] vector : listaClientes) {
-
-            modelo.addRow(vector);
-            tablaClientes.setModel(modelo);
-        }
-    }
-    
-    private DefaultTableModel buscarCliente() {
-        String nombre = campoTextoBuscar.getText().trim();
-        if (nombre.isEmpty()) {
-            // Devuelve una tabla vacía
-            DefaultTableModel modeloVacio = new DefaultTableModel(
-                new Object[][] {},
-                new String[] { "DNI", "Nombre", "Domicilio", "Localidad", "Teléfono" }
-            );
-            tablaClientes.setModel(modeloVacio);
-            return modeloVacio;
-        }
-        ClientesControlador cc = new ClientesControlador();
-        DefaultTableModel modelo = cc.buscarClientesPorNombre(nombre);
-        tablaClientes.setModel(modelo);
-        return modelo;
-    }
-
-    
-    private void mostrarBotones(){
-        botonEditarCliente.setVisible(true);
-        botonEliminarCliente.setVisible(true);
-    }
-    
-    private void ocultarBotones(){
-        botonEditarCliente.setVisible(false);
-        botonEliminarCliente.setVisible(false);
-        botonAgregarCliente.setVisible(false);
-    }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -113,262 +26,19 @@ public class panelClientes extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        content = new javax.swing.JPanel();
-        botonBuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaClientes = new javax.swing.JTable();
-        campoTextoBuscar = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        botonAgregarCliente = new javax.swing.JButton();
-        subContent = new javax.swing.JPanel();
-        botonEliminarCliente = new javax.swing.JButton();
-        botonEditarCliente = new javax.swing.JButton();
-
-        setForeground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(1500, 775));
-        setPreferredSize(new java.awt.Dimension(1500, 775));
-
-        content.setBackground(new java.awt.Color(255, 255, 255));
-        content.setForeground(new java.awt.Color(102, 102, 0));
-        content.setMaximumSize(new java.awt.Dimension(1500, 775));
-        content.setMinimumSize(new java.awt.Dimension(1200, 600));
-        content.setPreferredSize(new java.awt.Dimension(1500, 775));
-
-        botonBuscar.setText("Buscar");
-        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarActionPerformed(evt);
-            }
-        });
-
-        tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "DNI", "Nombre", "Domicilio", "Localidad", "Teléfono"
-            }
-        ));
-        jScrollPane1.setViewportView(tablaClientes);
-
-        campoTextoBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoTextoBuscarActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Ingrese aquí el nombre del cliente");
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        botonAgregarCliente.setText("Agregar cliente");
-        botonAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgregarClienteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(botonAgregarCliente)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(botonAgregarCliente)
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(216, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
-        );
-
-        subContent.setBackground(new java.awt.Color(255, 255, 255));
-        subContent.setPreferredSize(new java.awt.Dimension(600, 775));
-
-        javax.swing.GroupLayout subContentLayout = new javax.swing.GroupLayout(subContent);
-        subContent.setLayout(subContentLayout);
-        subContentLayout.setHorizontalGroup(
-            subContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-        );
-        subContentLayout.setVerticalGroup(
-            subContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 775, Short.MAX_VALUE)
-        );
-
-        botonEliminarCliente.setText("Eliminar cliente");
-        botonEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarClienteActionPerformed(evt);
-            }
-        });
-
-        botonEditarCliente.setText("Editar cliente");
-        botonEditarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarClienteActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
-        content.setLayout(contentLayout);
-        contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addGroup(contentLayout.createSequentialGroup()
-                        .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonBuscar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(contentLayout.createSequentialGroup()
-                        .addComponent(botonEliminarCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonEditarCliente)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
-                .addComponent(subContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contentLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonEliminarCliente)
-                    .addComponent(botonEditarCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
-            .addGroup(contentLayout.createSequentialGroup()
-                .addComponent(subContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(content, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        DefaultTableModel modelo = buscarCliente();
-        if (modelo.getRowCount() > 0) {
-            mostrarBotones();
-        } else {
-            ocultarBotones();
-        }
-    }//GEN-LAST:event_botonBuscarActionPerformed
-
-    private void campoTextoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoBuscarActionPerformed
-        DefaultTableModel modelo = buscarCliente();
-        if (modelo.getRowCount() > 0) {
-            mostrarBotones();
-        } else {
-            ocultarBotones();
-        }
-    }//GEN-LAST:event_campoTextoBuscarActionPerformed
-
-    private void botonEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarClienteActionPerformed
-        int filaSeleccionada = tablaClientes.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un cliente para eliminar.");
-            return;
-        }
-        String dniCliente = tablaClientes.getValueAt(filaSeleccionada, 0).toString();
-        int confirmacion = JOptionPane.showConfirmDialog(this,
-        "¿Está seguro que desea eliminar al cliente con DNI: " + dniCliente + "?",
-        "Confirmar eliminación",
-        JOptionPane.YES_NO_OPTION);
-
-        if (confirmacion != JOptionPane.YES_OPTION) {
-            return;
-        }
-        
-        if (ctrlClientes.eliminarClientePorDni(dniCliente)) {
-            JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.");
-            buscarCliente(); // refresca la tabla
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo eliminar el cliente.");
-        }
-
-    }//GEN-LAST:event_botonEliminarClienteActionPerformed
-
-    private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAgregarClienteActionPerformed
-
-    private void botonEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarClienteActionPerformed
-        int filaSeleccionada = tablaClientes.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un cliente para modificar.");
-            return;
-        }
-        Object[] cliente = new Object[] {
-            tablaClientes.getValueAt(filaSeleccionada, 0), // DNI
-            tablaClientes.getValueAt(filaSeleccionada, 1), // Nombre
-            tablaClientes.getValueAt(filaSeleccionada, 2), // Domicilio
-            tablaClientes.getValueAt(filaSeleccionada, 3), // Localidad
-            tablaClientes.getValueAt(filaSeleccionada, 4)  // Teléfono
-        };
-        MostrarPanel.showPanel(subContent, new panelModificacionClientes(cliente, ctrlClientes), 600, 775);
-    }//GEN-LAST:event_botonEditarClienteActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton botonAgregarCliente;
-    private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonEditarCliente;
-    private javax.swing.JButton botonEliminarCliente;
-    private javax.swing.JTextField campoTextoBuscar;
-    private javax.swing.JPanel content;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel subContent;
-    private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,7 @@
 package App;
 
 import Vista.Ventana;
+import Vista.panelGuia;
 
 /**
  *
@@ -14,6 +15,7 @@ public class ExpresoPanozzo {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        new Ventana().setVisible(true);
+       // new Ventana().setVisible(true);
+        new panelGuia().setVisible(true);
     }
 }
