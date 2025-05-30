@@ -116,7 +116,7 @@ public class ClienteDB {
         return eliminado;
     }
     
-    public boolean modificarClientePorDni(String dni, String nombre, String domicilio, String localidad, int telefono) {
+    public boolean modificarClientePorDni(String dni, String nombre, String domicilio, String localidad, String telefono) {
     Connection conex = null;
     boolean modificado = false;
 
@@ -127,7 +127,7 @@ public class ClienteDB {
         ps.setString(1, nombre);
         ps.setString(2, domicilio);
         ps.setString(3, localidad);
-        ps.setInt(4, telefono);
+        ps.setString(4, telefono);
         ps.setString(5, dni);
 
         int filasAfectadas = ps.executeUpdate();

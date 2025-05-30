@@ -29,6 +29,10 @@ public class ClientesControlador {
         return new ClienteDB().eliminarPorDni(dni); // true si se elimina, false si no se encuentra o falla
     }
     
+    public static boolean actualizarCliente(String dni, String nombre, String domicilio, String localidad, String telefono) {
+        return new ClienteDB().modificarClientePorDni(dni, nombre, domicilio, localidad, telefono);
+    }
+    
     public ArrayList<String> traerLocalidades() {
         return new ClienteDB().obtenerLocalidades();
     }

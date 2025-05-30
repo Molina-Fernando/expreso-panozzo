@@ -5,28 +5,54 @@
 package Vista;
 
 import Controlador.ClientesControlador;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author joaqu
  */
 public class panelModificacionClientes extends javax.swing.JPanel {
-
     /**
      * Creates new form panelModificacion
      */
     public panelModificacionClientes(Object[] cliente, ClientesControlador ctrlCliente) {
         initComponents();
+
+        // Seteo de los campos
         TextDNI.setText(cliente[0].toString());
         TextNombre.setText(cliente[1].toString());
         TextDomicilio.setText(cliente[2].toString());
         TextTelefono.setText(cliente[4].toString());
 
-        ctrlCliente.traerLocalidades(); // Este método llena el combo
+        // Llenado del combo
+        ArrayList<String> localidades = ctrlCliente.traerLocalidades();
+        for (String loc : localidades) {
+            comboLocalidad.addItem(loc);
+        }
 
+        // Selección de la localidad actual del cliente
         String localidadDelCliente = cliente[3].toString();
         comboLocalidad.setSelectedItem(localidadDelCliente);
     }
+    
+    
+    private void guardarCambios() {
+    String dni = TextDNI.getText().trim(); // DNI original
+    String nombre = TextNombre.getText().trim();
+    String domicilio = TextDomicilio.getText().trim();
+    String localidad = comboLocalidad.getSelectedItem().toString();
+    String telefono = TextTelefono.getText().trim();
+
+    boolean exito = ClientesControlador.actualizarCliente(dni, nombre, domicilio, localidad, telefono);
+    if (exito) {
+        JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
+        this.setVisible(false); // o cerrar el panel si corresponde
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo actualizar el cliente.");
+    }
+}
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -97,7 +123,6 @@ public class panelModificacionClientes extends javax.swing.JPanel {
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Localidad");
 
-        comboLocalidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboLocalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboLocalidadActionPerformed(evt);
@@ -185,7 +210,7 @@ public class panelModificacionClientes extends javax.swing.JPanel {
     }//GEN-LAST:event_TextDNIActionPerformed
 
     private void botonConfirmacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonConfirmacionActionPerformed
-        // TODO add your handling code here:
+        guardarCambios();
     }//GEN-LAST:event_botonConfirmacionActionPerformed
 
     private void TextTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTelefonoActionPerformed
