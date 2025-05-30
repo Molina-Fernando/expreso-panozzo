@@ -2,7 +2,7 @@ package Modelo;
 
 public class Cliente {
     
-    private int dni;
+    private String dni;
     private String nombre;
     private String domicilio;
     private String teléfono;
@@ -11,7 +11,7 @@ public class Cliente {
     public Cliente() {
     }
         
-    public Cliente(int dni, String nombre, String domicilio, String teléfono, Localidad localidad) {
+    public Cliente(String dni, String nombre, String domicilio, String teléfono, Localidad localidad) {
         this.dni = dni;
         this.nombre = nombre;
         this.domicilio = domicilio;
@@ -19,7 +19,7 @@ public class Cliente {
         this.localidad = localidad;
     }
 
-    public int getId() {
+    public String getId() {
         return dni;
     }
 
