@@ -25,4 +25,11 @@ public class ClientesControlador {
     return modelo;
 }
 
+    public boolean eliminarClientePorDni(String dni) {
+        return new ClienteDB().eliminarPorDni(dni); // true si se elimina, false si no se encuentra o falla
+    }
+    
+    public ArrayList<String> traerLocalidades() {
+        return new ClienteDB().obtenerLocalidades();
+    }
 }

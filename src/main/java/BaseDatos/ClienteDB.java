@@ -86,4 +86,91 @@ public class ClienteDB {
     return listaClientes;
 }
 
+    public boolean eliminarPorDni(String dni) {
+        Connection conex = null;
+        boolean eliminado = false;
+
+        try {
+            conex = Conexion.conectar();
+            String query = "DELETE FROM clientes WHERE dni = ?";
+            PreparedStatement ps = conex.prepareStatement(query);
+            ps.setString(1, dni);
+
+            int filasAfectadas = ps.executeUpdate();
+            eliminado = filasAfectadas > 0;
+
+        } catch (SQLException e) {
+            System.out.println("EXCEP SQL" + e);
+            JOptionPane.showMessageDialog(null, "¡Error al eliminar! Contacte al administrador");
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conex != null) {
+                    conex.close();
+                }
+            } catch (SQLException excSql) {
+                System.err.println("ERROR SQL" + excSql);
+            }
+        }
+
+        return eliminado;
+    }
+    
+    public boolean modificarClientePorDni(String dni, String nombre, String domicilio, String localidad, int telefono) {
+    Connection conex = null;
+    boolean modificado = false;
+
+    try {
+        conex = Conexion.conectar();
+        String query = "UPDATE clientes SET nombre = ?, domicilio = ?, localidad = ?, telefono = ? WHERE dni = ?";
+        PreparedStatement ps = conex.prepareStatement(query);
+        ps.setString(1, nombre);
+        ps.setString(2, domicilio);
+        ps.setString(3, localidad);
+        ps.setInt(4, telefono);
+        ps.setString(5, dni);
+
+        int filasAfectadas = ps.executeUpdate();
+        modificado = filasAfectadas > 0;
+
+    } catch (SQLException e) {
+        System.out.println("EXCEP SQL" + e);
+        JOptionPane.showMessageDialog(null, "¡Error al modificar! Contacte al administrador");
+        e.printStackTrace();
+    } finally {
+        try {
+            if (conex != null) conex.close();
+        } catch (SQLException excSql) {
+            System.err.println("ERROR SQL" + excSql);
+        }
+    }
+
+    return modificado;
+    }
+       
+    public static ArrayList<String> obtenerLocalidades() {
+        ArrayList<String> localidades = new ArrayList<>();
+        Connection conex = null;
+        try {
+            conex = Conexion.conectar();
+            String query = "SELECT DISTINCT localidad FROM clientes ORDER BY localidad";
+            PreparedStatement ps = conex.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                localidades.add(rs.getString("localidad"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener localidades: " + e);
+        } finally {
+            try {
+                if (conex != null) conex.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return localidades;
+    }
+
+
 }
+
