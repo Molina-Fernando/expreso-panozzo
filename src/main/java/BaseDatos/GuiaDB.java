@@ -105,7 +105,7 @@ public class GuiaDB {
             psi.setString(5, telefono);
 
             psi.executeUpdate();
-
+            
             return true;
         } catch (SQLException e) {
             System.out.println("EXCEP SQL" + e);
@@ -122,7 +122,7 @@ public class GuiaDB {
         return false;
     }
     
-        public static ArrayList<String> obtenerTipo() {
+    public static ArrayList<String> obtenerTipo() {
         ArrayList<String> nombreTipo = new ArrayList<>();
         Connection conex = null;
         try {
@@ -146,7 +146,6 @@ public class GuiaDB {
         }
         return nombreTipo;
     }
-
 
 }
 

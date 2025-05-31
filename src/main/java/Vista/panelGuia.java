@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,20 +19,38 @@ import javax.swing.JOptionPane;
  */
 public class panelGuia extends javax.swing.JPanel {
 
+    DefaultTableModel modelo;
+    ArrayList<Object[]> listaContenido = new ArrayList<>();
     /**
      * Creates new form panelGuia
      */
     public panelGuia() {
         initComponents();
+        
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("Tipo");
+        modelo.addColumn("Descripcion");
+        modelo.addColumn("Peso");
+        
+        modelo.setRowCount(0);
+        tablaContenido = new javax.swing.JTable();
+        tablaContenido.setModel(modelo);
+        tablaContenido = new JTable(modelo);
+        
+        jScrollPane3.setViewportView(tablaContenido);
+        
         ArrayList<String> localidades = new GuiaControlador().traerLocalidades();
         ArrayList<String> tipos = new GuiaControlador().traerTipo();
         for (String loc : localidades) {
             comboLocalidadesR.addItem(loc);
             comboLocalidadesD.addItem(loc);
         }
-        for (String tipo : tipos) {
+         for (String tipo : tipos) {
             comboTipo.addItem(tipo);
         }
+        
+       
     }
 
     /**
@@ -76,21 +96,21 @@ public class panelGuia extends javax.swing.JPanel {
         jTextField12 = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        jTextField14 = new javax.swing.JTextField();
+        campoCantidad = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         comboTipo = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        campoDescripcion = new javax.swing.JTextArea();
         jLabel23 = new javax.swing.JLabel();
-        jTextField15 = new javax.swing.JTextField();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        campoPeso = new javax.swing.JTextField();
         botonBuscarD = new java.awt.Button();
         botonEmitirGuia = new java.awt.Button();
         botonBuscarR = new java.awt.Button();
-        button4 = new java.awt.Button();
+        botonAgregarItem = new java.awt.Button();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tablaContenido = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setFocusable(false);
@@ -281,10 +301,10 @@ public class panelGuia extends javax.swing.JPanel {
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("CONTENIDO DEL ENVÍO");
 
-        jTextField14.setToolTipText("");
-        jTextField14.addActionListener(new java.awt.event.ActionListener() {
+        campoCantidad.setToolTipText("");
+        campoCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField14ActionPerformed(evt);
+                campoCantidadActionPerformed(evt);
             }
         });
 
@@ -306,33 +326,20 @@ public class panelGuia extends javax.swing.JPanel {
         jLabel22.setForeground(new java.awt.Color(51, 51, 51));
         jLabel22.setText("DESCRIPCIÓN");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        campoDescripcion.setColumns(20);
+        campoDescripcion.setRows(5);
+        jScrollPane1.setViewportView(campoDescripcion);
 
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(51, 51, 51));
         jLabel23.setText("PESO EN KG");
 
-        jTextField15.setToolTipText("");
-        jTextField15.addActionListener(new java.awt.event.ActionListener() {
+        campoPeso.setToolTipText("");
+        campoPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField15ActionPerformed(evt);
+                campoPesoActionPerformed(evt);
             }
         });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
 
         botonBuscarD.setActionCommand("BuscarD");
         botonBuscarD.setBackground(new java.awt.Color(0, 46, 83));
@@ -366,15 +373,28 @@ public class panelGuia extends javax.swing.JPanel {
             }
         });
 
-        button4.setBackground(new java.awt.Color(0, 46, 83));
-        button4.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        button4.setForeground(new java.awt.Color(127, 241, 82));
-        button4.setLabel("AGREGAR");
-        button4.addActionListener(new java.awt.event.ActionListener() {
+        botonAgregarItem.setBackground(new java.awt.Color(0, 46, 83));
+        botonAgregarItem.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonAgregarItem.setForeground(new java.awt.Color(127, 241, 82));
+        botonAgregarItem.setLabel("AGREGAR");
+        botonAgregarItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button4ActionPerformed(evt);
+                botonAgregarItemActionPerformed(evt);
             }
         });
+
+        tablaContenido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(tablaContenido);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -408,7 +428,7 @@ public class panelGuia extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(campoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(90, 90, 90)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,12 +440,12 @@ public class panelGuia extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(campoPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(botonAgregarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
@@ -455,8 +475,8 @@ public class panelGuia extends javax.swing.JPanel {
                             .addComponent(jTextField12)
                             .addComponent(jLabel15)
                             .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEmitirGuia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonEmitirGuia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
@@ -531,18 +551,15 @@ public class panelGuia extends javax.swing.JPanel {
                                 .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel14)
-                                .addGap(17, 17, 17)
+                                .addGap(5, 5, 5)
                                 .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGap(18, 18, 18)
                                 .addComponent(jLabel15)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addGap(154, 154, 154))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
                         .addComponent(jLabel19)
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -553,24 +570,24 @@ public class panelGuia extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel20)
                                 .addGap(5, 5, 5)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(botonAgregarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(154, 154, 154)
-                                .addComponent(botonEmitirGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel22)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel23)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 72, Short.MAX_VALUE))))
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(botonEmitirGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 72, Short.MAX_VALUE))
         );
 
         campoDniR.getAccessibleContext().setAccessibleName("");
@@ -638,17 +655,40 @@ public class panelGuia extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField13ActionPerformed
 
-    private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
+        private void actualizarTabla() {
+        modelo.setRowCount(0);
+        tablaContenido = new javax.swing.JTable();
+        tablaContenido.setModel(modelo);
+        tablaContenido = new JTable(modelo);
+        
+        jScrollPane3.setViewportView(tablaContenido);
+            
+        Object ob[] = new Object[4];
+        
+                ob[0] = campoCantidad.getText().trim();
+                ob[1] = comboTipo.getSelectedItem().toString();;
+                ob[2] = campoDescripcion.getText().trim();
+                ob[3] = campoPeso.getText().trim();
+                
+                listaContenido.add(ob);
+
+ 
+        for (Object[] vector : listaContenido) {
+            modelo.addRow(vector);
+            tablaContenido.setModel(modelo);
+        }
+    }
+    private void campoCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCantidadActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField14ActionPerformed
+    }//GEN-LAST:event_campoCantidadActionPerformed
 
     private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboTipoActionPerformed
 
-    private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
+    private void campoPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoPesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField15ActionPerformed
+    }//GEN-LAST:event_campoPesoActionPerformed
 
     private void botonBuscarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarDActionPerformed
         // TODO add your handling code here:
@@ -738,25 +778,29 @@ public class panelGuia extends javax.swing.JPanel {
 
     }//GEN-LAST:event_botonBuscarRActionPerformed
 
-    private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
+    private void botonAgregarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarItemActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_button4ActionPerformed
+        actualizarTabla();
+    }//GEN-LAST:event_botonAgregarItemActionPerformed
 
     private boolean registrarCliente(String dni, String nombre, String domicilio, String telefono, String localidad) {  
         return new GuiaControlador().registrarCliente(dni, nombre, domicilio, telefono, localidad);
     }
     ;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private java.awt.Button botonAgregarItem;
     private java.awt.Button botonBuscarD;
     private java.awt.Button botonBuscarR;
     private java.awt.Button botonEmitirGuia;
-    private java.awt.Button button4;
+    private javax.swing.JTextField campoCantidad;
+    private javax.swing.JTextArea campoDescripcion;
     private javax.swing.JTextField campoDniD;
     private javax.swing.JTextField campoDniR;
     private javax.swing.JTextField campoDomicilioD;
     private javax.swing.JTextField campoDomicilioR;
     private javax.swing.JTextField campoNombreD;
     private javax.swing.JTextField campoNombreR;
+    private javax.swing.JTextField campoPeso;
     private javax.swing.JTextField campoTelefonoD;
     private javax.swing.JTextField campoTelefonoR;
     private javax.swing.JComboBox<String> comboLocalidadesD;
@@ -786,15 +830,12 @@ public class panelGuia extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTable tablaContenido;
     // End of variables declaration//GEN-END:variables
 }
