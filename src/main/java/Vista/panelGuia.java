@@ -51,6 +51,15 @@ public class panelGuia extends javax.swing.JPanel {
             comboTipo.addItem(tipo);
         }
 
+        campoNombreR.setVisible(false);
+        campoNombreD.setVisible(false);
+        campoDomicilioR.setVisible(false);
+        campoDomicilioD.setVisible(false);
+        campoTelefonoR.setVisible(false);
+        campoTelefonoD.setVisible(false);
+        comboLocalidadesR.setVisible(false);
+        comboLocalidadesD.setVisible(false);
+
     }
 
     /**
@@ -698,24 +707,48 @@ public class panelGuia extends javax.swing.JPanel {
 
         Pattern patternDNI = Pattern.compile(patronDNI);
         Matcher matcherDNI = patternDNI.matcher(dni);
-
-        if (matcherDNI.matches()) {
+        if (!dni.trim().isEmpty()) {
             resultadoBusquedaClientes = new GuiaControlador().buscarDNI(dni);
-            if (!resultadoBusquedaClientes.isEmpty()) {
 
-                campoDniD.setText(resultadoBusquedaClientes.get(0));
-                campoNombreD.setText(resultadoBusquedaClientes.get(1));
-                campoDomicilioD.setText(resultadoBusquedaClientes.get(2));
-                campoTelefonoD.setText(resultadoBusquedaClientes.get(4));
-                comboLocalidadesD.setSelectedItem(resultadoBusquedaClientes.get(3));
+            if (matcherDNI.matches()) {
 
-                resultadoBusquedaClientes.clear();
+                if (!resultadoBusquedaClientes.isEmpty()) {
+                    campoNombreD.setVisible(true);
+                    campoNombreD.setEnabled(false);
+                    campoDniD.setEnabled(false);
+
+                    campoDomicilioD.setVisible(true);
+                    campoDomicilioD.setEnabled(false);
+
+                    campoTelefonoD.setVisible(true);
+                    campoTelefonoD.setEnabled(false);
+
+                    comboLocalidadesD.setVisible(true);
+                    comboLocalidadesD.setEnabled(false);
+
+                    campoDniD.setText(resultadoBusquedaClientes.get(0));
+                    campoNombreD.setText(resultadoBusquedaClientes.get(1));
+                    campoDomicilioD.setText(resultadoBusquedaClientes.get(2));
+                    campoTelefonoD.setText(resultadoBusquedaClientes.get(4));
+                    comboLocalidadesD.setSelectedItem(resultadoBusquedaClientes.get(3));
+
+                    resultadoBusquedaClientes.clear();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cliente no registrado");
+                    campoNombreD.setVisible(true);
+
+                    campoDomicilioD.setVisible(true);
+
+                    campoTelefonoD.setVisible(true);
+
+                    comboLocalidadesD.setVisible(true);
+                }
+
             } else {
-                JOptionPane.showMessageDialog(null, "Cliente no registrado");
+                JOptionPane.showMessageDialog(null, "DNI inválido");
             }
-
         } else {
-            JOptionPane.showMessageDialog(null, "El DNI no es válido");
+            JOptionPane.showMessageDialog(null, "Ingrese el DNI");
         }
 
     }//GEN-LAST:event_botonBuscarDActionPerformed
@@ -723,24 +756,32 @@ public class panelGuia extends javax.swing.JPanel {
     private void botonEmitirGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmitirGuiaActionPerformed
         String dniRemitente = campoDniR.getText().trim();
         if (new GuiaControlador().buscarDNI(dniRemitente).isEmpty()) {
-            registrarCliente(dniRemitente,
-                    campoNombreR.getText().trim(),
-                    campoDomicilioR.getText().trim(),
-                    campoTelefonoR.getText().trim(),
-                    comboLocalidadesR.getSelectedItem().toString().trim()
-            );
-            JOptionPane.showMessageDialog(null, "Remitente registrado con éxito.");
+            if (!campoNombreR.getText().trim().isEmpty() && !campoDomicilioR.getText().trim().isEmpty() && !campoTelefonoR.getText().trim().isEmpty() && !comboLocalidadesR.getSelectedItem().toString().trim().isEmpty()) {
+                registrarCliente(dniRemitente,
+                        campoNombreR.getText().trim(),
+                        campoDomicilioR.getText().trim(),
+                        campoTelefonoR.getText().trim(),
+                        comboLocalidadesR.getSelectedItem().toString().trim()
+                );
+                JOptionPane.showMessageDialog(null, "Remitente registrado con éxito.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Complete todos los datos del Remitente.");
+            }
         }
 
         String dniDestinatario = campoDniD.getText().trim();
         if (new GuiaControlador().buscarDNI(dniDestinatario).isEmpty()) {
-            registrarCliente(dniDestinatario, //ACA CREO QUE ES MEJOR LLAMAR DE UNA AL CONTROLADOR (LO PUSE EN UN METODO ABAJO PARA SEPARAR UN POCO)
-                    campoNombreD.getText().trim(),
-                    campoDomicilioD.getText().trim(),
-                    campoTelefonoD.getText().trim(),
-                    comboLocalidadesD.getSelectedItem().toString().trim()
-            );
-            JOptionPane.showMessageDialog(null, "Destinatario registrado con éxito.");
+            if (!campoNombreD.getText().trim().isEmpty() && !campoDomicilioD.getText().trim().isEmpty() && !campoTelefonoD.getText().trim().isEmpty() && !comboLocalidadesD.getSelectedItem().toString().trim().isEmpty()) {
+                registrarCliente(dniDestinatario, //ACA CREO QUE ES MEJOR LLAMAR DE UNA AL CONTROLADOR (LO PUSE EN UN METODO ABAJO PARA SEPARAR UN POCO)
+                        campoNombreD.getText().trim(),
+                        campoDomicilioD.getText().trim(),
+                        campoTelefonoD.getText().trim(),
+                        comboLocalidadesD.getSelectedItem().toString().trim()
+                );
+                JOptionPane.showMessageDialog(null, "Destinatario registrado con éxito.");
+            } else {
+                JOptionPane.showMessageDialog(null, "Complete todos los datos del Destinatario.");
+            }
         }
 
     }//GEN-LAST:event_botonEmitirGuiaActionPerformed
@@ -749,30 +790,47 @@ public class panelGuia extends javax.swing.JPanel {
 
     private void botonBuscarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRActionPerformed
         // TODO add your handling code here:
-        String dni = campoDniR.getText();
+        String dni = campoDniR.getText().trim();
 
         String patronDNI = "^[0-9]{7,10}$";
 
         Pattern patternDNI = Pattern.compile(patronDNI);
         Matcher matcherDNI = patternDNI.matcher(dni);
 
-        if (matcherDNI.matches()) {
+        if (!dni.trim().isEmpty()) {
             resultadoBusquedaClientes = new GuiaControlador().buscarDNI(dni);
-            if (!resultadoBusquedaClientes.isEmpty()) {
+            if (matcherDNI.matches()) {
+                if (!resultadoBusquedaClientes.isEmpty()) {
+                    campoNombreR.setVisible(true);
 
-                campoDniR.setText(resultadoBusquedaClientes.get(0));
-                campoNombreR.setText(resultadoBusquedaClientes.get(1));
-                campoDomicilioR.setText(resultadoBusquedaClientes.get(2));
-                campoTelefonoR.setText(resultadoBusquedaClientes.get(4));
-                comboLocalidadesR.setSelectedItem(resultadoBusquedaClientes.get(3));
+                    campoDomicilioR.setVisible(true);
 
-                resultadoBusquedaClientes.clear();
+                    campoTelefonoR.setVisible(true);
+
+                    comboLocalidadesR.setVisible(true);
+
+                    campoDniR.setText(resultadoBusquedaClientes.get(0));
+                    campoNombreR.setText(resultadoBusquedaClientes.get(1));
+                    campoDomicilioR.setText(resultadoBusquedaClientes.get(2));
+                    campoTelefonoR.setText(resultadoBusquedaClientes.get(4));
+                    comboLocalidadesR.setSelectedItem(resultadoBusquedaClientes.get(3));
+
+                    resultadoBusquedaClientes.clear();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Cliente no registrado");
+                    campoNombreR.setVisible(true);
+
+                    campoDomicilioR.setVisible(true);
+
+                    campoTelefonoR.setVisible(true);
+
+                    comboLocalidadesR.setVisible(true);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Cliente no registrado");
+                JOptionPane.showMessageDialog(null, "El DNI no es válido");
             }
-
         } else {
-            JOptionPane.showMessageDialog(null, "El DNI no es válido");
+            JOptionPane.showMessageDialog(null, "Coloque el DNI");
         }
 
     }//GEN-LAST:event_botonBuscarRActionPerformed
