@@ -20,7 +20,7 @@ public class GuiaControlador {
         return new GuiaDB().registrarCliente(dni, nombre, domicilio, telefono, localidad);
     }
     
-    public ArrayList<String> traerTipos() {
-        return new GuiaDB().obtenerTipos();
+    public ArrayList<String> traerTipo() {
+        return new GuiaDB().obtenerTipo();
     }
 }

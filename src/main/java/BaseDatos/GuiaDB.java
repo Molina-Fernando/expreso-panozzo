@@ -122,7 +122,7 @@ public class GuiaDB {
         return false;
     }
     
-        public static ArrayList<String> obtenerTipos() {
+        public static ArrayList<String> obtenerTipo() {
         ArrayList<String> nombreTipo = new ArrayList<>();
         Connection conex = null;
         try {

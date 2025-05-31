@@ -23,13 +23,13 @@ public class panelGuia extends javax.swing.JPanel {
     public panelGuia() {
         initComponents();
         ArrayList<String> localidades = new GuiaControlador().traerLocalidades();
-        ArrayList<String> tipos = new GuiaControlador().traerTipos();
+        ArrayList<String> tipos = new GuiaControlador().traerTipo();
         for (String loc : localidades) {
             comboLocalidadesR.addItem(loc);
             comboLocalidadesD.addItem(loc);
         }
         for (String tipo : tipos) {
-            comboTipos.addItem(tipo);
+            comboTipo.addItem(tipo);
         }
     }
 
@@ -78,7 +78,7 @@ public class panelGuia extends javax.swing.JPanel {
         jLabel19 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        comboTipos = new javax.swing.JComboBox<>();
+        comboTipo = new javax.swing.JComboBox<>();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -292,9 +292,9 @@ public class panelGuia extends javax.swing.JPanel {
         jLabel20.setForeground(new java.awt.Color(51, 51, 51));
         jLabel20.setText("CANTIDAD");
 
-        comboTipos.addActionListener(new java.awt.event.ActionListener() {
+        comboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboTiposActionPerformed(evt);
+                comboTipoActionPerformed(evt);
             }
         });
 
@@ -413,7 +413,7 @@ public class panelGuia extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel21)
-                                    .addComponent(comboTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(42, 42, 42))
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1)
@@ -549,7 +549,7 @@ public class panelGuia extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboTipos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel20)
                                 .addGap(5, 5, 5)
@@ -642,9 +642,9 @@ public class panelGuia extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField14ActionPerformed
 
-    private void comboTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTiposActionPerformed
+    private void comboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboTiposActionPerformed
+    }//GEN-LAST:event_comboTipoActionPerformed
 
     private void jTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField15ActionPerformed
         // TODO add your handling code here:
@@ -761,7 +761,7 @@ public class panelGuia extends javax.swing.JPanel {
     private javax.swing.JTextField campoTelefonoR;
     private javax.swing.JComboBox<String> comboLocalidadesD;
     private javax.swing.JComboBox<String> comboLocalidadesR;
-    private javax.swing.JComboBox<String> comboTipos;
+    private javax.swing.JComboBox<String> comboTipo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
