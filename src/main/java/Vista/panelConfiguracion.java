@@ -4,6 +4,15 @@
  */
 package Vista;
 
+import Controlador.GuiaControlador;
+import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Locale;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.NumberFormatter;
+
 /**
  *
  * @author defer
@@ -13,8 +22,22 @@ public class panelConfiguracion extends javax.swing.JPanel {
     /**
      * Creates new form panelConfiguracion
      */
+    private Number valorTipo1;
+    private Number valorTipo2;
+    private Number valorTipo3;
+
     public panelConfiguracion() {
         initComponents();
+        configurarCampoMoneda(CampoCostoTipo1);
+        configurarCampoMoneda(CampoCostoTipo2);
+        configurarCampoMoneda(CampoCostoTipo3);
+        ArrayList<Double> costoInicial = new GuiaControlador().traerCostos();
+        
+        CampoCostoTipo1.setValue(costoInicial.get(0));
+        CampoCostoTipo2.setValue(costoInicial.get(1));
+        CampoCostoTipo3.setValue(costoInicial.get(2));
+        
+
     }
 
     /**
@@ -27,31 +50,124 @@ public class panelConfiguracion extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        CampoCostoTipo1 = new javax.swing.JFormattedTextField();
+        CampoCostoTipo2 = new javax.swing.JFormattedTextField();
+        CampoCostoTipo3 = new javax.swing.JFormattedTextField();
+        botonActualizarCostos = new javax.swing.JButton();
 
         setForeground(new java.awt.Color(204, 153, 255));
         setMaximumSize(new java.awt.Dimension(1500, 775));
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1500, 775));
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(51, 255, 51));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1500, 775));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1500, 775));
+
+        jLabel1.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("CONFIGURACIÓN DE COSTOS DE ENVÍO");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setText("COSTO TIPO 1");
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setText("COSTO TIPO 2");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("COSTO TIPO 3");
+
+        CampoCostoTipo1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        CampoCostoTipo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoCostoTipo1ActionPerformed(evt);
+            }
+        });
+
+        CampoCostoTipo2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        CampoCostoTipo2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoCostoTipo2ActionPerformed(evt);
+            }
+        });
+
+        CampoCostoTipo3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        CampoCostoTipo3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoCostoTipo3ActionPerformed(evt);
+            }
+        });
+
+        botonActualizarCostos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonActualizarCostos.setText("ACTUALIZAR");
+        botonActualizarCostos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonActualizarCostosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1304, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(230, 230, 230)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(CampoCostoTipo1, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                            .addComponent(CampoCostoTipo2)
+                            .addComponent(CampoCostoTipo3)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(287, 287, 287)
+                        .addComponent(botonActualizarCostos)))
+                .addContainerGap(930, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(85, 85, 85)
+                .addComponent(jLabel1)
+                .addGap(78, 78, 78)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CampoCostoTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CampoCostoTipo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(CampoCostoTipo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(botonActualizarCostos)
+                .addContainerGap(342, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1488, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -59,8 +175,50 @@ public class panelConfiguracion extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void CampoCostoTipo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCostoTipo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoCostoTipo1ActionPerformed
+
+    private void CampoCostoTipo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCostoTipo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoCostoTipo2ActionPerformed
+
+    private void CampoCostoTipo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCostoTipo3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoCostoTipo3ActionPerformed
+
+    private void botonActualizarCostosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonActualizarCostosActionPerformed
+        valorTipo1 = (Number) CampoCostoTipo1.getValue();
+        valorTipo2 = (Number) CampoCostoTipo2.getValue();
+        valorTipo3 = (Number) CampoCostoTipo3.getValue();
+
+        new GuiaControlador().actualizarCostos(
+                valorTipo1.doubleValue(),
+                valorTipo2.doubleValue(),
+                valorTipo3.doubleValue()
+        );
+        JOptionPane.showMessageDialog(null, "Costos actualizados con éxito.");
+
+    }//GEN-LAST:event_botonActualizarCostosActionPerformed
+
+    private void configurarCampoMoneda(JFormattedTextField campo) {
+        NumberFormat formatoMoneda = NumberFormat.getCurrencyInstance(new Locale("es", "AR"));
+        NumberFormatter formatter = new NumberFormatter(formatoMoneda);
+        formatter.setAllowsInvalid(false);
+        formatter.setMinimum(0.0);
+        campo.setFormatterFactory(new DefaultFormatterFactory(formatter));
+        campo.setValue(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JFormattedTextField CampoCostoTipo1;
+    private javax.swing.JFormattedTextField CampoCostoTipo2;
+    private javax.swing.JFormattedTextField CampoCostoTipo3;
+    private javax.swing.JButton botonActualizarCostos;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

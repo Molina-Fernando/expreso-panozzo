@@ -5,18 +5,28 @@ import BaseDatos.GuiaDB;
 import java.util.ArrayList;
 
 public class GuiaControlador {
-    
+
 //    GuiaDB guiaDB = new GuiaDB();
-    
-        public ArrayList buscarDNI(String dni){        
-           return new GuiaDB().buscarDNI(dni);
+    public ArrayList buscarDNI(String dni) {
+        return new GuiaDB().buscarDNI(dni);
     }
-    
-        public ArrayList<String> traerLocalidades() {
+
+    public ArrayList<String> traerLocalidades() {
         return new GuiaDB().obtenerLocalidades();
     }
-        public boolean registrarCliente(String dni, String nombre, String domicilio, String telefono, String localidad){
-            return new GuiaDB().registrarCliente(dni, nombre, domicilio, telefono, localidad);
-        }
+
+    public boolean registrarCliente(String dni, String nombre, String domicilio, String telefono, String localidad) {
+        return new GuiaDB().registrarCliente(dni, nombre, domicilio, telefono, localidad);
+    }
     
+    public void actualizarCostos(double costoTipo1, double costoTipo2, double costoTipo3){
+        new GuiaDB().actualizarCostos(costoTipo1,costoTipo2, costoTipo3);
+    }
+    
+    
+    public ArrayList<Double> traerCostos() {
+        return new GuiaDB().obtenerCostos();
+    }
+
+
 }

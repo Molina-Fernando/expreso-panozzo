@@ -105,7 +105,7 @@ public class GuiaDB {
             psi.setString(5, telefono);
 
             psi.executeUpdate();
-            
+
             return true;
         } catch (SQLException e) {
             System.out.println("EXCEP SQL" + e);
@@ -122,6 +122,69 @@ public class GuiaDB {
         return false;
     }
 
+    public void actualizarCostos(double costoTipo1, double costoTipo2, double costoTipo3) {
+
+        Connection conex = null;
+        try {
+            conex = Conexion.conectar();
+
+            String updateCosto = "UPDATE tipo_envio SET costo = ? WHERE idtipo_envio = ?";
+
+            PreparedStatement ps = conex.prepareStatement(updateCosto);
+
+            ps.setDouble(1, costoTipo1);
+            ps.setInt(2, 1);
+            ps.executeUpdate();
+
+            // Actualiza el tipo 2
+            ps.setDouble(1, costoTipo2);
+            ps.setInt(2, 2);
+            ps.executeUpdate();
+
+            // Actualiza el tipo 3
+            ps.setDouble(1, costoTipo3);
+            ps.setInt(2, 3);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("EXCEP SQL" + e);
+            JOptionPane.showMessageDialog(null, "¡Error! Contacte al administrador");
+        } finally {
+            try {
+                if (conex != null) {
+                    conex.close();
+                }
+            } catch (SQLException excSql) {
+                System.err.println("ERROR SQL" + excSql);
+            }
+        }
+
+    }
+    
+     public static ArrayList<Double> obtenerCostos() {
+        ArrayList<Double> costos = new ArrayList<>();
+        Connection conex = null;
+        try {
+            conex = Conexion.conectar();
+            String query = "SELECT costo FROM tipo_envio";
+            PreparedStatement ps = conex.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                costos.add(rs.getDouble("costo"));
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener localidades: " + e);
+        } finally {
+            try {
+                if (conex != null) {
+                    conex.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return costos;
+    }
 }
 
 //                 for(String  item : resultadosConsulta) {
