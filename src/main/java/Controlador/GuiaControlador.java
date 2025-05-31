@@ -1,6 +1,7 @@
 package Controlador;
 
 import BaseDatos.ClienteDB;
+import BaseDatos.ConfiguracionDB;
 import BaseDatos.GuiaDB;
 import java.util.ArrayList;
 
@@ -19,14 +20,7 @@ public class GuiaControlador {
         return new GuiaDB().registrarCliente(dni, nombre, domicilio, telefono, localidad);
     }
     
-    public void actualizarCostos(double costoTipo1, double costoTipo2, double costoTipo3){
-        new GuiaDB().actualizarCostos(costoTipo1,costoTipo2, costoTipo3);
+    public ArrayList<String> traerTipos() {
+        return new GuiaDB().obtenerTipos();
     }
-    
-    
-    public ArrayList<Double> traerCostos() {
-        return new GuiaDB().obtenerCostos();
-    }
-
-
 }

@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Controlador.ConfiguracionControlador;
 import Controlador.GuiaControlador;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class panelConfiguracion extends javax.swing.JPanel {
         configurarCampoMoneda(CampoCostoTipo1);
         configurarCampoMoneda(CampoCostoTipo2);
         configurarCampoMoneda(CampoCostoTipo3);
-        ArrayList<Double> costoInicial = new GuiaControlador().traerCostos();
+        ArrayList<Double> costoInicial = new ConfiguracionControlador().traerCostos();
         
         CampoCostoTipo1.setValue(costoInicial.get(0));
         CampoCostoTipo2.setValue(costoInicial.get(1));
@@ -192,7 +193,7 @@ public class panelConfiguracion extends javax.swing.JPanel {
         valorTipo2 = (Number) CampoCostoTipo2.getValue();
         valorTipo3 = (Number) CampoCostoTipo3.getValue();
 
-        new GuiaControlador().actualizarCostos(
+        new ConfiguracionControlador().actualizarCostos(
                 valorTipo1.doubleValue(),
                 valorTipo2.doubleValue(),
                 valorTipo3.doubleValue()
