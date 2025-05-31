@@ -21,36 +21,36 @@ public class panelGuia extends javax.swing.JPanel {
 
     DefaultTableModel modelo;
     ArrayList<Object[]> listaContenido = new ArrayList<>();
+
     /**
      * Creates new form panelGuia
      */
     public panelGuia() {
         initComponents();
-        
+
         modelo = new DefaultTableModel();
         modelo.addColumn("Cantidad");
         modelo.addColumn("Tipo");
         modelo.addColumn("Descripcion");
         modelo.addColumn("Peso");
-        
+
         modelo.setRowCount(0);
         tablaContenido = new javax.swing.JTable();
         tablaContenido.setModel(modelo);
         tablaContenido = new JTable(modelo);
-        
+
         jScrollPane3.setViewportView(tablaContenido);
-        
+
         ArrayList<String> localidades = new GuiaControlador().traerLocalidades();
         ArrayList<String> tipos = new GuiaControlador().traerTipo();
         for (String loc : localidades) {
             comboLocalidadesR.addItem(loc);
             comboLocalidadesD.addItem(loc);
         }
-         for (String tipo : tipos) {
+        for (String tipo : tipos) {
             comboTipo.addItem(tipo);
         }
-        
-       
+
     }
 
     /**
@@ -655,24 +655,23 @@ public class panelGuia extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField13ActionPerformed
 
-        private void actualizarTabla() {
+    private void actualizarTabla() {
         modelo.setRowCount(0);
         tablaContenido = new javax.swing.JTable();
         tablaContenido.setModel(modelo);
         tablaContenido = new JTable(modelo);
-        
-        jScrollPane3.setViewportView(tablaContenido);
-            
-        Object ob[] = new Object[4];
-        
-                ob[0] = campoCantidad.getText().trim();
-                ob[1] = comboTipo.getSelectedItem().toString();;
-                ob[2] = campoDescripcion.getText().trim();
-                ob[3] = campoPeso.getText().trim();
-                
-                listaContenido.add(ob);
 
- 
+        jScrollPane3.setViewportView(tablaContenido);
+
+        Object ob[] = new Object[4];
+
+        ob[0] = campoCantidad.getText().trim();
+        ob[1] = comboTipo.getSelectedItem().toString();;
+        ob[2] = campoDescripcion.getText().trim();
+        ob[3] = campoPeso.getText().trim();
+
+        listaContenido.add(ob);
+
         for (Object[] vector : listaContenido) {
             modelo.addRow(vector);
             tablaContenido.setModel(modelo);
@@ -729,10 +728,10 @@ public class panelGuia extends javax.swing.JPanel {
                     campoDomicilioR.getText().trim(),
                     campoTelefonoR.getText().trim(),
                     comboLocalidadesR.getSelectedItem().toString().trim()
-                    );
+            );
             JOptionPane.showMessageDialog(null, "Remitente registrado con éxito.");
         }
-        
+
         String dniDestinatario = campoDniD.getText().trim();
         if (new GuiaControlador().buscarDNI(dniDestinatario).isEmpty()) {
             registrarCliente(dniDestinatario, //ACA CREO QUE ES MEJOR LLAMAR DE UNA AL CONTROLADOR (LO PUSE EN UN METODO ABAJO PARA SEPARAR UN POCO)
@@ -740,8 +739,8 @@ public class panelGuia extends javax.swing.JPanel {
                     campoDomicilioD.getText().trim(),
                     campoTelefonoD.getText().trim(),
                     comboLocalidadesD.getSelectedItem().toString().trim()
-                    );
-        JOptionPane.showMessageDialog(null, "Destinatario registrado con éxito.");
+            );
+            JOptionPane.showMessageDialog(null, "Destinatario registrado con éxito.");
         }
 
     }//GEN-LAST:event_botonEmitirGuiaActionPerformed
@@ -783,7 +782,7 @@ public class panelGuia extends javax.swing.JPanel {
         actualizarTabla();
     }//GEN-LAST:event_botonAgregarItemActionPerformed
 
-    private boolean registrarCliente(String dni, String nombre, String domicilio, String telefono, String localidad) {  
+    private boolean registrarCliente(String dni, String nombre, String domicilio, String telefono, String localidad) {
         return new GuiaControlador().registrarCliente(dni, nombre, domicilio, telefono, localidad);
     }
     ;

@@ -5,6 +5,7 @@
 package Controlador;
 
 import BaseDatos.ConfiguracionDB;
+import BaseDatos.GuiaDB;
 import java.util.ArrayList;
 
 /**
@@ -20,5 +21,13 @@ public class ConfiguracionControlador {
     
     public ArrayList<Double> traerCostos() {
         return new ConfiguracionDB().obtenerCostos();
+    }
+    
+    public ArrayList<Object[]> traerLocalidades() {
+        return new ConfiguracionDB().obtenerLocalidades();
+    }
+    
+    public boolean agregarLocalidades(String localidad){
+        return new ConfiguracionDB().agregarLocalidad(localidad);
     }
 }

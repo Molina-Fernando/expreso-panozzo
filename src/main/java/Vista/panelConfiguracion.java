@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.NumberFormatter;
 
@@ -33,11 +34,11 @@ public class panelConfiguracion extends javax.swing.JPanel {
         configurarCampoMoneda(CampoCostoTipo2);
         configurarCampoMoneda(CampoCostoTipo3);
         ArrayList<Double> costoInicial = new ConfiguracionControlador().traerCostos();
-        
+
         CampoCostoTipo1.setValue(costoInicial.get(0));
         CampoCostoTipo2.setValue(costoInicial.get(1));
         CampoCostoTipo3.setValue(costoInicial.get(2));
-        
+        actualizarTabla();
 
     }
 
@@ -59,6 +60,12 @@ public class panelConfiguracion extends javax.swing.JPanel {
         CampoCostoTipo2 = new javax.swing.JFormattedTextField();
         CampoCostoTipo3 = new javax.swing.JFormattedTextField();
         botonActualizarCostos = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaLocalidades = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        campoLocalidad = new javax.swing.JTextField();
+        botonAgregarLocalidades = new javax.swing.JButton();
 
         setForeground(new java.awt.Color(204, 153, 255));
         setMaximumSize(new java.awt.Dimension(1500, 775));
@@ -116,6 +123,36 @@ public class panelConfiguracion extends javax.swing.JPanel {
             }
         });
 
+        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel5.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setText("CONFIGURACIÓN DE LOCALIDADES");
+
+        tablaLocalidades.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "LOCALIDADES"
+            }
+        ));
+        jScrollPane1.setViewportView(tablaLocalidades);
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("LOCALIDAD");
+
+        botonAgregarLocalidades.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonAgregarLocalidades.setText("AGREGAR");
+        botonAgregarLocalidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAgregarLocalidadesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -132,33 +169,57 @@ public class panelConfiguracion extends javax.swing.JPanel {
                             .addComponent(CampoCostoTipo2)
                             .addComponent(CampoCostoTipo3)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(287, 287, 287)
                         .addComponent(botonActualizarCostos)))
-                .addContainerGap(930, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(campoLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonAgregarLocalidades))
+                .addGap(119, 119, 119))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 407, Short.MAX_VALUE)
+                .addComponent(jLabel5)
+                .addGap(138, 138, 138))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addComponent(jLabel1)
-                .addGap(78, 78, 78)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CampoCostoTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CampoCostoTipo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CampoCostoTipo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(botonActualizarCostos)
-                .addContainerGap(342, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(78, 78, 78)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CampoCostoTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CampoCostoTipo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CampoCostoTipo3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(botonActualizarCostos))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(58, 58, 58)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(campoLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(botonAgregarLocalidades))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(176, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -202,6 +263,36 @@ public class panelConfiguracion extends javax.swing.JPanel {
 
     }//GEN-LAST:event_botonActualizarCostosActionPerformed
 
+    private void actualizarTabla() {
+        ArrayList<Object[]> localidades = new ConfiguracionControlador().traerLocalidades();
+
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("LOCALIDADES");
+        for (Object[] fila : localidades) {
+            modelo.addRow(fila);
+        }
+
+        tablaLocalidades.setModel(modelo);
+
+    }
+    private void botonAgregarLocalidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarLocalidadesActionPerformed
+        String localidad = campoLocalidad.getText();
+
+        if (!localidad.isEmpty()) {
+            boolean agregado = new ConfiguracionControlador().agregarLocalidades(localidad);
+            if (agregado) {
+                JOptionPane.showMessageDialog(null, "Localidad agregada correctamente");
+                campoLocalidad.setText("");
+                actualizarTabla(); // vuelve a cargar todo
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al agregar localidad");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Escribí un nombre para la localidad");
+        }
+    }//GEN-LAST:event_botonAgregarLocalidadesActionPerformed
+
     private void configurarCampoMoneda(JFormattedTextField campo) {
         NumberFormat formatoMoneda = NumberFormat.getCurrencyInstance(new Locale("es", "AR"));
         NumberFormatter formatter = new NumberFormatter(formatoMoneda);
@@ -216,10 +307,16 @@ public class panelConfiguracion extends javax.swing.JPanel {
     private javax.swing.JFormattedTextField CampoCostoTipo2;
     private javax.swing.JFormattedTextField CampoCostoTipo3;
     private javax.swing.JButton botonActualizarCostos;
+    private javax.swing.JButton botonAgregarLocalidades;
+    private javax.swing.JTextField campoLocalidad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaLocalidades;
     // End of variables declaration//GEN-END:variables
 }

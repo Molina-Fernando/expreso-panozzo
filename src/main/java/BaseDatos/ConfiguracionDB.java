@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import java.lang.Object;
 
 /**
  *
@@ -79,4 +80,64 @@ public class ConfiguracionDB {
         }
         return costos;
     }
+     
+     public static ArrayList<Object[]> obtenerLocalidades() {
+        ArrayList<Object[]> localidades = new ArrayList<>();
+        Connection conex = null;
+        try {
+            conex = Conexion.conectar();
+            
+            String query = "SELECT nombre FROM localidades";
+            PreparedStatement ps = conex.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Object[] fila = new Object[1];
+                fila[0] = rs.getString("nombre");
+                 localidades.add(fila);
+                 
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al obtener localidades: " + e);
+        } finally {
+            try {
+                if (conex != null) {
+                    conex.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return localidades;
+     }
+     
+     
+        public static boolean agregarLocalidad(String localidad) {
+        
+        Connection conex = null;
+        try {
+            conex = Conexion.conectar();
+            
+            String insert = "INSERT INTO localidades (Nombre) VALUES (?)";
+            PreparedStatement psi = conex.prepareStatement(insert);
+           
+            psi.setString(1, localidad);
+            psi.executeUpdate();
+            System.out.println("ACA LLEGO");
+            return true;
+            
+        } catch (SQLException e) {
+            System.out.println("Error al cargar localidad: " + e);
+        } finally {
+            try {
+                if (conex != null) {
+                    conex.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+     }
 }
+
+
