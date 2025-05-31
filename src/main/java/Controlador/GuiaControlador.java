@@ -1,7 +1,5 @@
 package Controlador;
 
-import BaseDatos.ClienteDB;
-import BaseDatos.ConfiguracionDB;
 import BaseDatos.GuiaDB;
 import java.util.ArrayList;
 

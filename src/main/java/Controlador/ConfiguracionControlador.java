@@ -5,7 +5,6 @@
 package Controlador;
 
 import BaseDatos.ConfiguracionDB;
-import BaseDatos.GuiaDB;
 import java.util.ArrayList;
 
 /**
