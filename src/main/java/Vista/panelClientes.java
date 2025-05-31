@@ -4,6 +4,7 @@ package Vista;
 import Controlador.ClientesControlador;
 import Modelo.Cliente;
 import Utilidades.MostrarPanel;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,9 +27,30 @@ public class panelClientes extends javax.swing.JPanel {
      */
     public panelClientes() {
         initComponents();
-        
+        // Placeholder para el campo de búsqueda
+        campoTextoBuscar.setText("Ingrese aquí el nombre del cliente");
+        campoTextoBuscar.setForeground(Color.GRAY);
+
+        campoTextoBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                if (campoTextoBuscar.getText().equals("Ingrese aquí el nombre del cliente")) {
+                    campoTextoBuscar.setText("");
+                    campoTextoBuscar.setForeground(Color.BLACK);
+                }
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                if (campoTextoBuscar.getText().isEmpty()) {
+                    campoTextoBuscar.setForeground(Color.GRAY);
+                    campoTextoBuscar.setText("Ingrese aquí el nombre del cliente");
+                }
+            }
+        });
+
         //Esconder botones
-        ocultarBotones();
+        //ocultarBotones();
         //Carga de tabla
         modelo = new DefaultTableModel();
         modelo.addColumn("DNI");
@@ -93,12 +115,11 @@ public class panelClientes extends javax.swing.JPanel {
     
     private void mostrarBotones(){
         botonEditarCliente.setVisible(true);
-        botonEliminarCliente.setVisible(true);
+        botonAgregarCliente.setVisible(true);
     }
     
     private void ocultarBotones(){
         botonEditarCliente.setVisible(false);
-        botonEliminarCliente.setVisible(false);
         botonAgregarCliente.setVisible(false);
     }
     
@@ -114,17 +135,16 @@ public class panelClientes extends javax.swing.JPanel {
     private void initComponents() {
 
         content = new javax.swing.JPanel();
-        botonBuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tablaClientes = new javax.swing.JTable();
-        campoTextoBuscar = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         botonAgregarCliente = new javax.swing.JButton();
-        subContent = new javax.swing.JPanel();
-        botonEliminarCliente = new javax.swing.JButton();
         botonEditarCliente = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaClientes = new javax.swing.JTable();
+        campoTextoBuscar = new javax.swing.JTextField();
+        botonBuscar = new javax.swing.JButton();
+        subContent = new javax.swing.JPanel();
 
         setForeground(new java.awt.Color(255, 255, 255));
         setMinimumSize(new java.awt.Dimension(1500, 775));
@@ -136,13 +156,46 @@ public class panelClientes extends javax.swing.JPanel {
         content.setMinimumSize(new java.awt.Dimension(1200, 600));
         content.setPreferredSize(new java.awt.Dimension(1500, 775));
 
-        botonBuscar.setText("Buscar");
-        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
+        jLabel1.setText("LISTA DE CLIENTES REGISTRADOS");
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(800, 775));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 177, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 98, Short.MAX_VALUE)
+        );
+
+        botonAgregarCliente.setBackground(new java.awt.Color(127, 241, 82));
+        botonAgregarCliente.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonAgregarCliente.setForeground(new java.awt.Color(0, 46, 83));
+        botonAgregarCliente.setText("AGREGAR CLIENTE");
+        botonAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarActionPerformed(evt);
+                botonAgregarClienteActionPerformed(evt);
             }
         });
 
+        botonEditarCliente.setBackground(new java.awt.Color(0, 46, 83));
+        botonEditarCliente.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonEditarCliente.setForeground(new java.awt.Color(127, 241, 82));
+        botonEditarCliente.setText("EDITAR CLIENTE");
+        botonEditarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonEditarClienteActionPerformed(evt);
+            }
+        });
+
+        tablaClientes.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tablaClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -153,7 +206,15 @@ public class panelClientes extends javax.swing.JPanel {
             new String [] {
                 "DNI", "Nombre", "Domicilio", "Localidad", "Teléfono"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tablaClientes);
 
         campoTextoBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -162,100 +223,87 @@ public class panelClientes extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setText("Ingrese aquí el nombre del cliente");
-
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        botonAgregarCliente.setText("Agregar cliente");
-        botonAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+        botonBuscar.setBackground(new java.awt.Color(0, 46, 83));
+        botonBuscar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonBuscar.setForeground(new java.awt.Color(127, 241, 82));
+        botonBuscar.setText("BUSCAR");
+        botonBuscar.setMaximumSize(new java.awt.Dimension(32767, 32767));
+        botonBuscar.setMinimumSize(new java.awt.Dimension(73, 27));
+        botonBuscar.setPreferredSize(new java.awt.Dimension(73, 27));
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonAgregarClienteActionPerformed(evt);
+                botonBuscarActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(botonAgregarCliente)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(botonAgregarCliente)
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(216, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(botonEditarCliente))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(170, 170, 170))
+                .addGap(217, 217, 217))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(258, 258, 258)
+                .addComponent(botonAgregarCliente)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(196, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(195, 195, 195)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(156, Short.MAX_VALUE))
         );
 
         subContent.setBackground(new java.awt.Color(255, 255, 255));
-        subContent.setPreferredSize(new java.awt.Dimension(600, 775));
 
         javax.swing.GroupLayout subContentLayout = new javax.swing.GroupLayout(subContent);
         subContent.setLayout(subContentLayout);
         subContentLayout.setHorizontalGroup(
             subContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 775, Short.MAX_VALUE)
         );
         subContentLayout.setVerticalGroup(
             subContentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 775, Short.MAX_VALUE)
+            .addGap(0, 774, Short.MAX_VALUE)
         );
-
-        botonEliminarCliente.setText("Eliminar cliente");
-        botonEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEliminarClienteActionPerformed(evt);
-            }
-        });
-
-        botonEditarCliente.setText("Editar cliente");
-        botonEditarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarClienteActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
         content.setLayout(contentLayout);
         contentLayout.setHorizontalGroup(
             contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(contentLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
+                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentLayout.createSequentialGroup()
-                        .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonBuscar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(contentLayout.createSequentialGroup()
-                        .addComponent(botonEliminarCliente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonEditarCliente)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)))
                 .addComponent(subContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         contentLayout.setVerticalGroup(
@@ -263,17 +311,7 @@ public class panelClientes extends javax.swing.JPanel {
             .addGroup(contentLayout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonEliminarCliente)
-                    .addComponent(botonEditarCliente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
             .addGroup(contentLayout.createSequentialGroup()
@@ -295,50 +333,21 @@ public class panelClientes extends javax.swing.JPanel {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         DefaultTableModel modelo = buscarCliente();
-        if (modelo.getRowCount() > 0) {
+        /*if (modelo.getRowCount() > 0) {
             mostrarBotones();
         } else {
             ocultarBotones();
-        }
+        }*/
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void campoTextoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoBuscarActionPerformed
         DefaultTableModel modelo = buscarCliente();
-        if (modelo.getRowCount() > 0) {
+        /*if (modelo.getRowCount() > 0) {
             mostrarBotones();
         } else {
             ocultarBotones();
-        }
+        }*/
     }//GEN-LAST:event_campoTextoBuscarActionPerformed
-
-    private void botonEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEliminarClienteActionPerformed
-        int filaSeleccionada = tablaClientes.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione un cliente para eliminar.");
-            return;
-        }
-        String dniCliente = tablaClientes.getValueAt(filaSeleccionada, 0).toString();
-        int confirmacion = JOptionPane.showConfirmDialog(this,
-        "¿Está seguro que desea eliminar al cliente con DNI: " + dniCliente + "?",
-        "Confirmar eliminación",
-        JOptionPane.YES_NO_OPTION);
-
-        if (confirmacion != JOptionPane.YES_OPTION) {
-            return;
-        }
-        
-        if (ctrlClientes.eliminarClientePorDni(dniCliente)) {
-            JOptionPane.showMessageDialog(this, "Cliente eliminado correctamente.");
-            buscarCliente(); // refresca la tabla
-        } else {
-            JOptionPane.showMessageDialog(this, "No se pudo eliminar el cliente.");
-        }
-
-    }//GEN-LAST:event_botonEliminarClienteActionPerformed
-
-    private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_botonAgregarClienteActionPerformed
 
     private void botonEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarClienteActionPerformed
         int filaSeleccionada = tablaClientes.getSelectedRow();
@@ -353,15 +362,18 @@ public class panelClientes extends javax.swing.JPanel {
             tablaClientes.getValueAt(filaSeleccionada, 3), // Localidad
             tablaClientes.getValueAt(filaSeleccionada, 4)  // Teléfono
         };
-        MostrarPanel.showPanel(subContent, new panelModificacionClientes(cliente, ctrlClientes), 600, 775);
+        MostrarPanel.showPanel(subContent, new panelModificacionClientes(cliente, ctrlClientes), 250, 775);
     }//GEN-LAST:event_botonEditarClienteActionPerformed
 
+    private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
+        
+    }//GEN-LAST:event_botonAgregarClienteActionPerformed
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAgregarCliente;
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonEditarCliente;
-    private javax.swing.JButton botonEliminarCliente;
     private javax.swing.JTextField campoTextoBuscar;
     private javax.swing.JPanel content;
     private javax.swing.JLabel jLabel1;
