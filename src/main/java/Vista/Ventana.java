@@ -28,7 +28,7 @@ public class Ventana extends javax.swing.JFrame {
     public Ventana() {
         initComponents();
         setLocationRelativeTo(null);
-        setResizable(false);
+        //setResizable(false);
         setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("VentanaPrincipal");
     }

@@ -17,10 +17,10 @@ import javax.swing.JOptionPane;
  * @author defer
  */
 public class GuiaDB {
-    
-    public ArrayList <String> resultadosConsulta = new ArrayList(); 
-    
-    public ArrayList buscarDNI(String dni){
+
+    public ArrayList<String> resultadosConsulta = new ArrayList();
+
+    public ArrayList buscarDNI(String dni) {
         Connection conex = null;
         try {
             conex = Conexion.conectar();
@@ -30,9 +30,9 @@ public class GuiaDB {
             PreparedStatement psq = conex.prepareStatement(query);
             psq.setString(1, dni);
             ResultSet rs = psq.executeQuery();
-            
-             if (rs.next()) {
-                                
+
+            if (rs.next()) {
+
 //                // Obtener la cantidad de columnas
 //                ResultSetMetaData metaData = rs.getMetaData();
 //                int columnas = metaData.getColumnCount();
@@ -41,18 +41,17 @@ public class GuiaDB {
 //                for (int i = 1; i <= columnas; i++) {
 //                    resultadosConsulta.add(rs.getString(i));
 //                }
-            
                 resultadosConsulta.add(rs.getString(1));
                 resultadosConsulta.add(rs.getString(2));
                 resultadosConsulta.add(rs.getString(3));
                 resultadosConsulta.add(rs.getString(4));
                 resultadosConsulta.add(rs.getString(5));
-                
-                 //System.out.println(resultadosConsulta);
-             }
-            } catch (SQLException e) {
+
+                //System.out.println(resultadosConsulta);
+            }
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "---");
-            } finally {
+        } finally {
             try {
                 if (conex != null) {
                     conex.close();
@@ -60,11 +59,11 @@ public class GuiaDB {
             } catch (SQLException excSql) {
                 System.err.println("ERROR SQL" + excSql);
             }
-    }
+        }
         return resultadosConsulta;
     }
-    
-        public static ArrayList<String> obtenerLocalidades() {
+
+    public static ArrayList<String> obtenerLocalidades() {
         ArrayList<String> localidades = new ArrayList<>();
         Connection conex = null;
         try {
@@ -79,17 +78,51 @@ public class GuiaDB {
             System.out.println("Error al obtener localidades: " + e);
         } finally {
             try {
-                if (conex != null) conex.close();
+                if (conex != null) {
+                    conex.close();
+                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }
         return localidades;
     }
-    
+
+    public boolean registrarCliente(String dni, String nombre, String domicilio, String telefono, String localidad) {
+
+        Connection conex = null;
+        try {
+            conex = Conexion.conectar();
+
+            String insertCliente = "INSERT INTO clientes(dni, nombre, domicilio, localidad, telefono) VALUES(?,?,?,?,?);";
+
+            PreparedStatement psi = conex.prepareStatement(insertCliente);
+
+            psi.setString(1, dni);
+            psi.setString(2, nombre);
+            psi.setString(3, domicilio);
+            psi.setString(4, localidad);
+            psi.setString(5, telefono);
+
+            psi.executeUpdate();
+            
+            return true;
+        } catch (SQLException e) {
+            System.out.println("EXCEP SQL" + e);
+            JOptionPane.showMessageDialog(null, "¡Error! Contacte al administrador");
+        } finally {
+            try {
+                if (conex != null) {
+                    conex.close();
+                }
+            } catch (SQLException excSql) {
+                System.err.println("ERROR SQL" + excSql);
+            }
+        }
+        return false;
+    }
 
 }
-
 
 //                 for(String  item : resultadosConsulta) {
 //                     resultadosConsulta.add(rs.getString(1));

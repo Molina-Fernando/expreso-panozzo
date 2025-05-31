@@ -20,14 +20,12 @@ public class panelGuia extends javax.swing.JPanel {
     /**
      * Creates new form panelGuia
      */
-    
-   
     public panelGuia() {
         initComponents();
         ArrayList<String> localidades = new GuiaControlador().traerLocalidades();
         for (String loc : localidades) {
             comboLocalidadesR.addItem(loc);
-            comboLocalidadD.addItem(loc);
+            comboLocalidadesD.addItem(loc);
         }
     }
 
@@ -58,7 +56,7 @@ public class panelGuia extends javax.swing.JPanel {
         campoTelefonoD = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        comboLocalidadD = new javax.swing.JComboBox<>();
+        comboLocalidadesD = new javax.swing.JComboBox<>();
         campoNombreD = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         campoDniD = new javax.swing.JTextField();
@@ -86,11 +84,15 @@ public class panelGuia extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         botonBuscarD = new java.awt.Button();
-        button2 = new java.awt.Button();
+        botonEmitirGuia = new java.awt.Button();
         botonBuscarR = new java.awt.Button();
         button4 = new java.awt.Button();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setFocusable(false);
+        setMaximumSize(new java.awt.Dimension(1500, 775));
+        setMinimumSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1500, 775));
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
@@ -187,9 +189,9 @@ public class panelGuia extends javax.swing.JPanel {
         jLabel11.setForeground(new java.awt.Color(51, 51, 51));
         jLabel11.setText("LOCALIDAD");
 
-        comboLocalidadD.addActionListener(new java.awt.event.ActionListener() {
+        comboLocalidadesD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboLocalidadDActionPerformed(evt);
+                comboLocalidadesDActionPerformed(evt);
             }
         });
 
@@ -340,13 +342,13 @@ public class panelGuia extends javax.swing.JPanel {
             }
         });
 
-        button2.setBackground(new java.awt.Color(0, 46, 83));
-        button2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        button2.setForeground(new java.awt.Color(127, 241, 82));
-        button2.setLabel("EMITIR GUÍA");
-        button2.addActionListener(new java.awt.event.ActionListener() {
+        botonEmitirGuia.setBackground(new java.awt.Color(0, 46, 83));
+        botonEmitirGuia.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonEmitirGuia.setForeground(new java.awt.Color(127, 241, 82));
+        botonEmitirGuia.setLabel("EMITIR GUÍA");
+        botonEmitirGuia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                button2ActionPerformed(evt);
+                botonEmitirGuiaActionPerformed(evt);
             }
         });
 
@@ -375,29 +377,12 @@ public class panelGuia extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
+                        .addGap(44, 44, 44)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTextField14))
-                                    .addGap(91, 91, 91)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel21)
-                                        .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                .addComponent(jScrollPane1)
-                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel3)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel4)
@@ -411,51 +396,71 @@ public class panelGuia extends javax.swing.JPanel {
                                     .addComponent(jLabel8)
                                     .addComponent(comboLocalidadesR, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(41, 41, 41)
-                                .addComponent(botonBuscarR, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
+                                .addComponent(botonBuscarR, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel13)
-                                            .addComponent(campoDniD)
-                                            .addComponent(jLabel12)
-                                            .addComponent(campoNombreD)
-                                            .addComponent(jLabel9)
-                                            .addComponent(campoDomicilioD)
-                                            .addComponent(jLabel10)
-                                            .addComponent(campoTelefonoD)
-                                            .addComponent(jLabel11)
-                                            .addComponent(comboLocalidadD, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(47, 47, 47)
-                                        .addComponent(botonBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(183, 183, 183)
+                                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(90, 90, 90)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel21)
+                                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(42, 42, 42))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jScrollPane1)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jTextField10)
-                                    .addComponent(jLabel16)
-                                    .addComponent(jTextField9)
-                                    .addComponent(jLabel18)
-                                    .addComponent(jTextField11)
-                                    .addComponent(jLabel14)
-                                    .addComponent(jTextField12)
-                                    .addComponent(jLabel15)
-                                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane2))))
-                .addGap(95, 95, 95))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(260, 260, 260)
-                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(1249, Short.MAX_VALUE)))
+                                    .addComponent(jLabel13)
+                                    .addComponent(campoDniD)
+                                    .addComponent(jLabel12)
+                                    .addComponent(campoNombreD)
+                                    .addComponent(jLabel9)
+                                    .addComponent(campoDomicilioD)
+                                    .addComponent(jLabel10)
+                                    .addComponent(campoTelefonoD)
+                                    .addComponent(jLabel11)
+                                    .addComponent(comboLocalidadesD, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(47, 47, 47)
+                                .addComponent(botonBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(183, 183, 183)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel17)
+                            .addComponent(jTextField10)
+                            .addComponent(jLabel16)
+                            .addComponent(jTextField9)
+                            .addComponent(jLabel18)
+                            .addComponent(jTextField11)
+                            .addComponent(jLabel14)
+                            .addComponent(jTextField12)
+                            .addComponent(jLabel15)
+                            .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonEmitirGuia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
@@ -512,7 +517,7 @@ public class panelGuia extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel11)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboLocalidadD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(comboLocalidadesD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(2, 2, 2)
                                 .addComponent(jLabel16)
@@ -533,37 +538,42 @@ public class panelGuia extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(154, 154, 154))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel19)
-                        .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addGap(5, 5, 5)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel21)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel22)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(jLabel23)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(button2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(727, Short.MAX_VALUE)
-                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(108, 108, 108)))
+                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(5, 5, 5)
+                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(154, 154, 154)
+                                .addComponent(botonEmitirGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(button4, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel22)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel23)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(0, 72, Short.MAX_VALUE))))
         );
 
         campoDniR.getAccessibleContext().setAccessibleName("");
+
+        getAccessibleContext().setAccessibleParent(this);
     }// </editor-fold>//GEN-END:initComponents
 
     private void campoDniRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDniRActionPerformed
@@ -594,9 +604,9 @@ public class panelGuia extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoTelefonoDActionPerformed
 
-    private void comboLocalidadDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalidadDActionPerformed
+    private void comboLocalidadesDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalidadesDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboLocalidadDActionPerformed
+    }//GEN-LAST:event_comboLocalidadesDActionPerformed
 
     private void campoNombreDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNombreDActionPerformed
         // TODO add your handling code here:
@@ -640,80 +650,104 @@ public class panelGuia extends javax.swing.JPanel {
 
     private void botonBuscarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarDActionPerformed
         // TODO add your handling code here:
-        
+
         String dni = campoDniD.getText();
 
         String patronDNI = "^[0-9]{7,10}$";
-        
+
         Pattern patternDNI = Pattern.compile(patronDNI);
         Matcher matcherDNI = patternDNI.matcher(dni);
-        
-         if (matcherDNI.matches()) {
-         resultadoBusquedaClientes = guiaControlador.buscarDNI(dni);
-             if(!resultadoBusquedaClientes.isEmpty()){
 
-                     campoDniD.setText(resultadoBusquedaClientes.get(0));
-                     campoNombreD.setText(resultadoBusquedaClientes.get(1));
-                     campoDomicilioD.setText(resultadoBusquedaClientes.get(2));
-                     campoTelefonoD.setText(resultadoBusquedaClientes.get(4));
-                     comboLocalidadD.setSelectedItem(resultadoBusquedaClientes.get(3));
-                 
-                 resultadoBusquedaClientes.clear();
+        if (matcherDNI.matches()) {
+            resultadoBusquedaClientes = new GuiaControlador().buscarDNI(dni);
+            if (!resultadoBusquedaClientes.isEmpty()) {
+
+                campoDniD.setText(resultadoBusquedaClientes.get(0));
+                campoNombreD.setText(resultadoBusquedaClientes.get(1));
+                campoDomicilioD.setText(resultadoBusquedaClientes.get(2));
+                campoTelefonoD.setText(resultadoBusquedaClientes.get(4));
+                comboLocalidadesD.setSelectedItem(resultadoBusquedaClientes.get(3));
+
+                resultadoBusquedaClientes.clear();
             } else {
                 JOptionPane.showMessageDialog(null, "Cliente no registrado");
-             }
-     
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "El DNI no es válido");
         }
-        
+
     }//GEN-LAST:event_botonBuscarDActionPerformed
 
-    private void button2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_button2ActionPerformed
+    private void botonEmitirGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmitirGuiaActionPerformed
+        String dniRemitente = campoDniR.getText().trim();
+        if (new GuiaControlador().buscarDNI(dniRemitente).isEmpty()) {
+            registrarCliente(dniRemitente,
+                    campoNombreR.getText().trim(),
+                    campoDomicilioR.getText().trim(),
+                    campoTelefonoR.getText().trim(),
+                    comboLocalidadesR.getSelectedItem().toString().trim()
+                    );
+            JOptionPane.showMessageDialog(null, "Remitente registrado con éxito.");
+        }
+        
+        String dniDestinatario = campoDniD.getText().trim();
+        if (new GuiaControlador().buscarDNI(dniDestinatario).isEmpty()) {
+            registrarCliente(dniDestinatario, //ACA CREO QUE ES MEJOR LLAMAR DE UNA AL CONTROLADOR (LO PUSE EN UN METODO ABAJO PARA SEPARAR UN POCO)
+                    campoNombreD.getText().trim(),
+                    campoDomicilioD.getText().trim(),
+                    campoTelefonoD.getText().trim(),
+                    comboLocalidadesD.getSelectedItem().toString().trim()
+                    );
+        JOptionPane.showMessageDialog(null, "Destinatario registrado con éxito.");
+        }
 
-private ArrayList <String> resultadoBusquedaClientes = new ArrayList(); 
-    GuiaControlador guiaControlador = new GuiaControlador();
+    }//GEN-LAST:event_botonEmitirGuiaActionPerformed
+
+    private ArrayList<String> resultadoBusquedaClientes = new ArrayList();
+
     private void botonBuscarRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarRActionPerformed
         // TODO add your handling code here:
         String dni = campoDniR.getText();
 
         String patronDNI = "^[0-9]{7,10}$";
-        
+
         Pattern patternDNI = Pattern.compile(patronDNI);
         Matcher matcherDNI = patternDNI.matcher(dni);
-        
-         if (matcherDNI.matches()) {
-         resultadoBusquedaClientes = guiaControlador.buscarDNI(dni);
-             if(!resultadoBusquedaClientes.isEmpty()){
 
-                     campoDniR.setText(resultadoBusquedaClientes.get(0));
-                     campoNombreR.setText(resultadoBusquedaClientes.get(1));
-                     campoDomicilioR.setText(resultadoBusquedaClientes.get(2));
-                     campoTelefonoR.setText(resultadoBusquedaClientes.get(4));
-                    comboLocalidadesR.setSelectedItem(resultadoBusquedaClientes.get(3));
-                 
-                 resultadoBusquedaClientes.clear();
+        if (matcherDNI.matches()) {
+            resultadoBusquedaClientes = new GuiaControlador().buscarDNI(dni);
+            if (!resultadoBusquedaClientes.isEmpty()) {
+
+                campoDniR.setText(resultadoBusquedaClientes.get(0));
+                campoNombreR.setText(resultadoBusquedaClientes.get(1));
+                campoDomicilioR.setText(resultadoBusquedaClientes.get(2));
+                campoTelefonoR.setText(resultadoBusquedaClientes.get(4));
+                comboLocalidadesR.setSelectedItem(resultadoBusquedaClientes.get(3));
+
+                resultadoBusquedaClientes.clear();
             } else {
                 JOptionPane.showMessageDialog(null, "Cliente no registrado");
-             }
-     
+            }
+
         } else {
             JOptionPane.showMessageDialog(null, "El DNI no es válido");
         }
-                                      
+
     }//GEN-LAST:event_botonBuscarRActionPerformed
 
     private void button4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_button4ActionPerformed
 
-
+    private boolean registrarCliente(String dni, String nombre, String domicilio, String telefono, String localidad) {  
+        return new GuiaControlador().registrarCliente(dni, nombre, domicilio, telefono, localidad);
+    }
+    ;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Button botonBuscarD;
     private java.awt.Button botonBuscarR;
-    private java.awt.Button button2;
+    private java.awt.Button botonEmitirGuia;
     private java.awt.Button button4;
     private javax.swing.JTextField campoDniD;
     private javax.swing.JTextField campoDniR;
@@ -723,7 +757,7 @@ private ArrayList <String> resultadoBusquedaClientes = new ArrayList();
     private javax.swing.JTextField campoNombreR;
     private javax.swing.JTextField campoTelefonoD;
     private javax.swing.JTextField campoTelefonoR;
-    private javax.swing.JComboBox<String> comboLocalidadD;
+    private javax.swing.JComboBox<String> comboLocalidadesD;
     private javax.swing.JComboBox<String> comboLocalidadesR;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;
