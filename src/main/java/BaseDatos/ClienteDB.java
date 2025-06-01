@@ -147,7 +147,77 @@ public class ClienteDB {
 
     return modificado;
     }
+    
+    public boolean agregarCliente(String dni, String nombre, String domicilio, String localidad, String telefono) {
+    
+     if (existeCliente(dni)) {
+        JOptionPane.showMessageDialog(null, "Ya existe un cliente con ese DNI.");
+        return false;
+    }    
+    
+    Connection conex = null;
+    boolean creado = false;
+
+    try {
+        conex = Conexion.conectar();
+        String query = "INSERT INTO clientes (dni, nombre, domicilio, localidad, telefono) VALUES (?, ?, ?, ?, ?)";
+
+        PreparedStatement ps = conex.prepareStatement(query);
+        ps.setString(1, dni);
+        ps.setString(2, nombre);
+        ps.setString(3, domicilio);
+        ps.setString(4, localidad);
+        ps.setString(5, telefono);
+
+
+        int filasAfectadas = ps.executeUpdate();
+        creado = filasAfectadas > 0;
+
+    } catch (SQLException e) {
+        System.out.println("EXCEP SQL" + e);
+        JOptionPane.showMessageDialog(null, "¡Error al crear el cliente! Contacte al administrador");
+        e.printStackTrace();
+    } finally {
+        try {
+            if (conex != null) conex.close();
+        } catch (SQLException excSql) {
+            System.err.println("ERROR SQL" + excSql);
+        }
+    }
+
+    return creado;
+    }
        
+    public boolean existeCliente(String dni) {
+    Connection conex = null;
+    boolean existe = false;
+
+    try {
+        conex = Conexion.conectar();
+        String query = "SELECT 1 FROM clientes WHERE dni = ?";
+        PreparedStatement ps = conex.prepareStatement(query);
+        ps.setString(1, dni);
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            existe = true; // hay un resultado, ya existe
+        }
+
+    } catch (SQLException e) {
+        System.out.println("EXCEP SQL al verificar existencia: " + e);
+        e.printStackTrace();
+    } finally {
+        try {
+            if (conex != null) conex.close();
+        } catch (SQLException excSql) {
+            System.err.println("ERROR SQL" + excSql);
+        }
+    }
+
+    return existe;
+}
+
+    
     public static ArrayList<String> obtenerLocalidades() {
         ArrayList<String> localidades = new ArrayList<>();
         Connection conex = null;
@@ -171,6 +241,6 @@ public class ClienteDB {
         return localidades;
     }
 
-
+//
 }
 
