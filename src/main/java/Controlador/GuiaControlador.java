@@ -20,4 +20,18 @@ public class GuiaControlador {
     public ArrayList<String> traerTipo() {
         return new GuiaDB().obtenerTipo();
     }
+    
+    public boolean emitirGuia(
+            String costoSeguro, 
+            String costoFlete, 
+            String recargo, 
+            String valor_declarado, 
+            String contrareembolso, 
+            String remitente_dni, 
+            String destinatario_dni, 
+            String remitente_localidad, 
+            String destinatario_localidad){
+        
+        return new GuiaDB().emitirGuia(costoSeguro, costoFlete, recargo, valor_declarado, contrareembolso, remitente_dni, destinatario_dni, remitente_localidad, destinatario_localidad);
+    }
 }

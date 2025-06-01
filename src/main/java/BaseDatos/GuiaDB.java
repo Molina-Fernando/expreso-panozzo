@@ -105,7 +105,6 @@ public class GuiaDB {
             psi.setString(5, telefono);
 
             psi.executeUpdate();
-            
             return true;
         } catch (SQLException e) {
             System.out.println("EXCEP SQL" + e);
@@ -121,7 +120,6 @@ public class GuiaDB {
         }
         return false;
     }
-    
     public static ArrayList<String> obtenerTipo() {
         ArrayList<String> nombreTipo = new ArrayList<>();
         Connection conex = null;
@@ -145,6 +143,56 @@ public class GuiaDB {
             }
         }
         return nombreTipo;
+    }
+
+    public boolean emitirGuia(String costoSeguro,
+            String costoFlete,
+            String recargo,
+            String valor_declarado,
+            String contrareembolso,
+            String remitente_dni,
+            String destinatario_dni,
+            String remitente_localidad,
+            String destinatario_localidad) {
+
+        Connection conex = null;
+        try {
+            conex = Conexion.conectar();
+
+            String insertGuia = "INSERT INTO guias"
+                    + "(seguro, flete, recargo, valor_declarado, contrareembolso, remitente_dni, destinatario_dni, remitente_localidad, destinatario_localidad) "
+                    + "VALUES(?,?,?,?,?, ?, ?, ?, ?);";
+
+            PreparedStatement psi = conex.prepareStatement(insertGuia);
+            
+            
+            psi.setFloat(1, Float.parseFloat(costoSeguro));
+            psi.setFloat(2, Float.parseFloat(costoFlete));
+            psi.setFloat(3, Float.parseFloat(recargo));
+            psi.setFloat(4, Float.parseFloat(valor_declarado));
+            psi.setFloat(5, Float.parseFloat(contrareembolso));
+            psi.setString(6, remitente_dni);
+            psi.setString(7, destinatario_dni);
+            psi.setString(8, remitente_localidad);
+            psi.setString(9, destinatario_localidad);
+
+            psi.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println("EXCEP SQL" + e);
+            JOptionPane.showMessageDialog(null, "¡Error! Contacte al administrador");
+        } finally {
+            try {
+                if (conex != null) {
+                    conex.close();
+                }
+            } catch (SQLException excSql) {
+                System.err.println("ERROR SQL" + excSql);
+            }
+        }
+
+        return false;
     }
 
 }

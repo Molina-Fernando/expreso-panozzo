@@ -16,7 +16,11 @@ public class panelModificacionClientes extends javax.swing.JPanel {
     /**
      * Creates new form panelModificacion
      */
-    public panelModificacionClientes(Object[] cliente, ClientesControlador ctrlCliente) {
+    
+    private panelClientes panelPadre;
+
+    public panelModificacionClientes(Object[] cliente, ClientesControlador ctrlCliente, panelClientes padre) {
+        this.panelPadre = padre;
         initComponents();
 
         // Seteo de los campos
@@ -47,6 +51,7 @@ public class panelModificacionClientes extends javax.swing.JPanel {
     boolean exito = ClientesControlador.actualizarCliente(dni, nombre, domicilio, localidad, telefono);
     if (exito) {
         JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
+        panelPadre.actualizarTabla();
         this.setVisible(false); // o cerrar el panel si corresponde
     } else {
         JOptionPane.showMessageDialog(this, "No se pudo actualizar el cliente.");

@@ -1,6 +1,7 @@
 package Modelo;
 import Modelo.Cliente;
 import Modelo.Localidad;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Guia {
@@ -11,12 +12,14 @@ public class Guia {
     private double recargo;
     private double valorDeclarado;
     private double contrareembolso;
+    private LocalDate fecha;
     private Cliente remitente;  
     private Cliente destinatario;
     private Localidad localidadRemitente;
     private Localidad localidadDestinatario; 
     private ArrayList<Contenido> listaContenido;
-
+    
+    
     public Guia() {
     }
 
