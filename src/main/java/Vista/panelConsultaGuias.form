@@ -125,7 +125,9 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="botonBuscar" min="-2" pref="100" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="164" max="-2" attributes="0"/>
-                              <Component id="botonBuscar1" min="-2" pref="152" max="-2" attributes="0"/>
+                              <Component id="botonOrdenarPor" min="-2" pref="152" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="comboOrdenar" min="-2" pref="186" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="botonEditarCliente" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -142,7 +144,8 @@
                           <Component id="campoTextoBuscar" alignment="3" min="-2" pref="26" max="-2" attributes="0"/>
                           <Component id="botonBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="botonEditarCliente" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                          <Component id="botonBuscar1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="botonOrdenarPor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="comboOrdenar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" min="-2" pref="523" max="-2" attributes="0"/>
@@ -163,7 +166,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="52" green="f1" red="7f" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="EDITAR CLIENTE"/>
+                <Property name="text" type="java.lang.String" value="EDITAR GU&#xcd;A"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonEditarClienteActionPerformed"/>
@@ -293,7 +296,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBuscarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="botonBuscar1">
+            <Component class="javax.swing.JButton" name="botonOrdenarPor">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="53" green="2e" red="0" type="rgb"/>
@@ -316,8 +319,28 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonBuscar1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonOrdenarPorActionPerformed"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="comboOrdenar">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="6">
+                    <StringItem index="0" value="N&#xba; Gu&#xed;a"/>
+                    <StringItem index="1" value="Fecha"/>
+                    <StringItem index="2" value="Origen"/>
+                    <StringItem index="3" value="Destino"/>
+                    <StringItem index="4" value="Remitente"/>
+                    <StringItem index="5" value="Destinatario"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboOrdenarActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

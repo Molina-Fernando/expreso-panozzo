@@ -24,5 +24,11 @@ public class ConsultaGuiaControlador {
         }
         return modelo;
     }
+
+    public ArrayList<Object[]> getGuiasOrdenadasPor(String criterio) {
+        return new ConsultaGuiaDB().getGuiasOrdenadasPor(criterio);
+    }
+    
+    
     
 }
