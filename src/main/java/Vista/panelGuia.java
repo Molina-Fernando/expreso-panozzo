@@ -67,14 +67,13 @@ public class panelGuia extends javax.swing.JPanel {
         campoTelefonoD.setVisible(false);
         comboLocalidadesR.setVisible(false);
         comboLocalidadesD.setVisible(false);
-        
+
         configurarCampoMoneda(campoSeguro);
         configurarCampoMoneda(campoFlete);
         configurarCampoMoneda(campoRecargo);
         configurarCampoMoneda(campoValorDeclarado);
         configurarCampoMoneda(campoContrareembolso);
-      
-        
+
         campoSeguro.setValue(0);
         campoFlete.setValue(0);
         campoRecargo.setValue(0);
@@ -292,7 +291,7 @@ public class panelGuia extends javax.swing.JPanel {
         jLabel18.setText("RECARGO");
 
         jLabel19.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel19.setFont(new java.awt.Font("Cambria", 1, 28)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("CONTENIDO DEL ENVÍO");
 
@@ -347,9 +346,9 @@ public class panelGuia extends javax.swing.JPanel {
             }
         });
 
-        botonEmitirGuia.setBackground(new java.awt.Color(0, 46, 83));
-        botonEmitirGuia.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        botonEmitirGuia.setForeground(new java.awt.Color(127, 241, 82));
+        botonEmitirGuia.setBackground(new java.awt.Color(127, 241, 82));
+        botonEmitirGuia.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        botonEmitirGuia.setForeground(new java.awt.Color(39, 57, 131));
         botonEmitirGuia.setLabel("EMITIR GUÍA");
         botonEmitirGuia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -408,27 +407,41 @@ public class panelGuia extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel13)
+                            .addComponent(campoDniD)
+                            .addComponent(jLabel12)
+                            .addComponent(campoNombreD)
+                            .addComponent(jLabel9)
+                            .addComponent(campoDomicilioD)
+                            .addComponent(jLabel10)
+                            .addComponent(campoTelefonoD)
+                            .addComponent(jLabel11)
+                            .addComponent(comboLocalidadesD, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel4)
+                            .addComponent(campoDniR)
+                            .addComponent(jLabel5)
+                            .addComponent(campoNombreR)
+                            .addComponent(jLabel6)
+                            .addComponent(campoDomicilioR)
+                            .addComponent(jLabel7)
+                            .addComponent(campoTelefonoR)
+                            .addComponent(jLabel8)
+                            .addComponent(comboLocalidadesR, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonBuscarR, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 143, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel4)
-                                    .addComponent(campoDniR)
-                                    .addComponent(jLabel5)
-                                    .addComponent(campoNombreR)
-                                    .addComponent(jLabel6)
-                                    .addComponent(campoDomicilioR)
-                                    .addComponent(jLabel7)
-                                    .addComponent(campoTelefonoR)
-                                    .addComponent(jLabel8)
-                                    .addComponent(comboLocalidadesR, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41)
-                                .addComponent(botonBuscarR, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
@@ -449,27 +462,8 @@ public class panelGuia extends javax.swing.JPanel {
                                     .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(campoPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(botonAgregarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel13)
-                                    .addComponent(campoDniD)
-                                    .addComponent(jLabel12)
-                                    .addComponent(campoNombreD)
-                                    .addComponent(jLabel9)
-                                    .addComponent(campoDomicilioD)
-                                    .addComponent(jLabel10)
-                                    .addComponent(campoTelefonoD)
-                                    .addComponent(jLabel11)
-                                    .addComponent(comboLocalidadesD, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(47, 47, 47)
-                                .addComponent(botonBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(183, 183, 183)
+                                .addComponent(botonAgregarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(320, 320, 320)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(campoValorDeclarado, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoRecargo, javax.swing.GroupLayout.Alignment.LEADING)
@@ -481,120 +475,121 @@ public class panelGuia extends javax.swing.JPanel {
                             .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(campoSeguro, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoContrareembolso))
-                        .addGap(43, 43, 43))
-                    .addComponent(botonEmitirGuia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 832, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74))
+                            .addComponent(campoContrareembolso)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 835, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(botonEmitirGuia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(117, 117, 117))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoFlete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(jLabel18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoRecargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoValorDeclarado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(campoContrareembolso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addGap(2, 2, 2)
+                                        .addComponent(jLabel4)
+                                        .addGap(0, 0, 0)
+                                        .addComponent(campoDniR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(botonBuscarR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel5)
+                                .addGap(5, 5, 5)
+                                .addComponent(campoNombreR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel6)
+                                .addGap(5, 5, 5)
+                                .addComponent(campoDomicilioR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel7)
+                                .addGap(5, 5, 5)
+                                .addComponent(campoTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboLocalidadesR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel21)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel20)
+                                        .addGap(5, 5, 5)
+                                        .addComponent(campoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(botonAgregarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel22)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel23)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
+                        .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(campoDniR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonBuscarR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addGap(5, 5, 5)
-                        .addComponent(campoNombreR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addGap(5, 5, 5)
-                        .addComponent(campoDomicilioR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel7)
-                        .addGap(5, 5, 5)
-                        .addComponent(campoTelefonoR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboLocalidadesR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(15, 15, 15)
-                                .addComponent(campoDniD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(botonBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel13)
+                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(5, 5, 5)
-                                .addComponent(campoNombreD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel9)
-                                .addGap(5, 5, 5)
-                                .addComponent(campoDomicilioD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel10)
-                                .addGap(5, 5, 5)
-                                .addComponent(campoTelefonoD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboLocalidadesD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoFlete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(23, 23, 23)
-                                .addComponent(jLabel18)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoRecargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel14)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoValorDeclarado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(17, 17, 17)
-                                .addComponent(jLabel15)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoContrareembolso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonBuscarD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(campoDniD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel12)
+                        .addGap(5, 5, 5)
+                        .addComponent(campoNombreD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
+                        .addGap(0, 0, 0)
+                        .addComponent(campoDomicilioD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel10)
+                        .addGap(5, 5, 5)
+                        .addComponent(campoTelefonoD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboLocalidadesD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel19)
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(comboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel20)
-                                .addGap(5, 5, 5)
-                                .addComponent(campoCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botonAgregarItem, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonEmitirGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 68, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
 
         campoDniR.getAccessibleContext().setAccessibleName("");
@@ -676,6 +671,7 @@ public class panelGuia extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_campoPesoActionPerformed
 
+
     private void botonBuscarDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarDActionPerformed
         // TODO add your handling code here:
 
@@ -685,6 +681,7 @@ public class panelGuia extends javax.swing.JPanel {
 
         Pattern patternDNI = Pattern.compile(patronDNI);
         Matcher matcherDNI = patternDNI.matcher(dni);
+
         if (!dni.trim().isEmpty()) {
             resultadoBusquedaClientes = new GuiaControlador().buscarDNI(dni);
 
@@ -731,36 +728,76 @@ public class panelGuia extends javax.swing.JPanel {
 
     }//GEN-LAST:event_botonBuscarDActionPerformed
 
+
     private void botonEmitirGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEmitirGuiaActionPerformed
+
+        boolean testigo1 = false;
+        boolean testigo2 = false;
+
         String dniRemitente = campoDniR.getText().trim();
+
+        String patronTelefono = "^[0-9]{10}$";
+
+        Pattern patronTel = Pattern.compile(patronTelefono);
+
+        Matcher matcherTel = patronTel.matcher(campoTelefonoR.getText().trim());
+
+        Matcher matcherTelD = patronTel.matcher(campoTelefonoD.getText().trim());
+
         if (new GuiaControlador().buscarDNI(dniRemitente).isEmpty()) {
-            if (!campoNombreR.getText().trim().isEmpty() && !campoDomicilioR.getText().trim().isEmpty() && !campoTelefonoR.getText().trim().isEmpty() && !comboLocalidadesR.getSelectedItem().toString().trim().isEmpty()) {
-                registrarCliente(dniRemitente,
-                        campoNombreR.getText().trim(),
-                        campoDomicilioR.getText().trim(),
-                        campoTelefonoR.getText().trim(),
-                        comboLocalidadesR.getSelectedItem().toString().trim()
-                );
-                JOptionPane.showMessageDialog(null, "Remitente registrado con éxito.");
+
+            if (!campoNombreR.getText().trim().isEmpty()
+                    && !campoDomicilioR.getText().trim().isEmpty()
+                    && !campoTelefonoR.getText().trim().isEmpty()
+                    && !comboLocalidadesR.getSelectedItem().toString().trim().isEmpty()) {
+
+                if (matcherTel.matches()) {
+
+                    registrarCliente(dniRemitente,
+                            campoNombreR.getText().trim(),
+                            campoDomicilioR.getText().trim(),
+                            campoTelefonoR.getText().trim(),
+                            comboLocalidadesR.getSelectedItem().toString().trim()
+                    );
+                    testigo1 = true;
+                    JOptionPane.showMessageDialog(null, "Remitente registrado con éxito.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Teléfono remitente inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Complete todos los datos del Remitente.");
             }
-        }
+        } else {
+            testigo1 = true;
+        };
 
         String dniDestinatario = campoDniD.getText().trim();
         if (new GuiaControlador().buscarDNI(dniDestinatario).isEmpty()) {
-            if (!campoNombreD.getText().trim().isEmpty() && !campoDomicilioD.getText().trim().isEmpty() && !campoTelefonoD.getText().trim().isEmpty() && !comboLocalidadesD.getSelectedItem().toString().trim().isEmpty()) {
-                registrarCliente(dniDestinatario, //ACA CREO QUE ES MEJOR LLAMAR DE UNA AL CONTROLADOR (LO PUSE EN UN METODO ABAJO PARA SEPARAR UN POCO)
-                        campoNombreD.getText().trim(),
-                        campoDomicilioD.getText().trim(),
-                        campoTelefonoD.getText().trim(),
-                        comboLocalidadesD.getSelectedItem().toString().trim()
-                );
-                JOptionPane.showMessageDialog(null, "Destinatario registrado con éxito.");
+
+            if (!campoNombreD.getText().trim().isEmpty()
+                    && !campoDomicilioD.getText().trim().isEmpty()
+                    && !campoTelefonoD.getText().trim().isEmpty()
+                    && !comboLocalidadesD.getSelectedItem().toString().trim().isEmpty()) {
+
+                if (matcherTelD.matches()) {
+
+                    registrarCliente(dniDestinatario,
+                            campoNombreD.getText().trim(),
+                            campoDomicilioD.getText().trim(),
+                            campoTelefonoD.getText().trim(),
+                            comboLocalidadesD.getSelectedItem().toString().trim()
+                    );
+                    testigo2 = true;
+                    JOptionPane.showMessageDialog(null, "Destinatario registrado con éxito.");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Teléfono destinatario inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Complete todos los datos del Destinatario.");
+                JOptionPane.showMessageDialog(null, "Complete todos los datos del Destinatario");
             }
-        }
+        } else {
+            testigo2 = true;
+        };
 
         // Obtener la fecha y hora actual del sistema
         LocalDate fechaActual = LocalDate.now(ZoneId.systemDefault());
@@ -768,21 +805,54 @@ public class panelGuia extends javax.swing.JPanel {
         // Formatear la fecha a un formato legible
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         //System.out.println(fechaActual.format(formato));
-        if (new GuiaControlador().emitirGuia(
-                campoSeguro.getValue().toString().trim(),
-                campoFlete.getValue().toString().trim(),
-                campoRecargo.getValue().toString().trim(),
-                campoValorDeclarado.getValue().toString().trim(),
-                campoContrareembolso.getValue().toString().trim(),
-                campoDniR.getText().trim(),
-                campoDniD.getText().trim(),
-                comboLocalidadesR.getSelectedItem().toString().trim(),
-                comboLocalidadesD.getSelectedItem().toString().trim()
-        )) {
-            JOptionPane.showMessageDialog(null, "Guía emitida con éxito.");
+
+        if (testigo1 && testigo2) {
+            if (new GuiaControlador().emitirGuia(
+                    campoSeguro.getValue().toString().trim(),
+                    campoFlete.getValue().toString().trim(),
+                    campoRecargo.getValue().toString().trim(),
+                    campoValorDeclarado.getValue().toString().trim(),
+                    campoContrareembolso.getValue().toString().trim(),
+                    campoDniR.getText().trim(),
+                    campoDniD.getText().trim(),
+                    comboLocalidadesR.getSelectedItem().toString().trim(),
+                    comboLocalidadesD.getSelectedItem().toString().trim()
+            )) {
+                JOptionPane.showMessageDialog(null, "Guía emitida con éxito.");
+
+                campoDniR.setText("");
+                campoNombreR.setText("");
+                campoDomicilioR.setText("");
+                campoTelefonoR.setText("");
+
+                campoDniD.setText("");
+                campoNombreD.setText("");
+                campoDomicilioD.setText("");
+                campoTelefonoD.setText("");
+
+                campoSeguro.setValue(0);
+                campoFlete.setValue(0);
+                campoRecargo.setValue(0);
+                campoValorDeclarado.setValue(0);
+                campoContrareembolso.setValue(0);
+
+                campoNombreR.setEnabled(true);
+                campoDniR.setEnabled(true);
+                campoDomicilioR.setEnabled(true);
+                campoTelefonoR.setEnabled(true);
+                comboLocalidadesR.setEnabled(true);
+
+                campoNombreD.setEnabled(true);
+                campoDniD.setEnabled(true);
+                campoDomicilioD.setEnabled(true);
+                campoTelefonoD.setEnabled(true);
+                comboLocalidadesD.setEnabled(true);
+
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, "No se pudo emitir la guía");
         }
+
     }//GEN-LAST:event_botonEmitirGuiaActionPerformed
 
     private ArrayList<String> resultadoBusquedaClientes = new ArrayList();
@@ -842,6 +912,9 @@ public class panelGuia extends javax.swing.JPanel {
     private void botonAgregarItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarItemActionPerformed
         // TODO add your handling code here:
         actualizarTabla();
+        campoCantidad.setText("");
+        campoDescripcion.setText("");
+        campoPeso.setText("");
     }//GEN-LAST:event_botonAgregarItemActionPerformed
 
     private void campoContrareembolsoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoContrareembolsoActionPerformed
