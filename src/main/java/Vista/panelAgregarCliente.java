@@ -118,6 +118,12 @@ public class panelAgregarCliente extends javax.swing.JPanel {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("DOMICILIO");
 
+        TextTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TextTelefonoActionPerformed(evt);
+            }
+        });
+
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("TELEFONO");
 
@@ -207,6 +213,10 @@ public class panelAgregarCliente extends javax.swing.JPanel {
     private void comboLocalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboLocalidadActionPerformed
 
     }//GEN-LAST:event_comboLocalidadActionPerformed
+
+    private void TextTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TextTelefonoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

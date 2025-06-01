@@ -47,7 +47,7 @@ public class Ventana extends javax.swing.JFrame {
         btnClientes = new javax.swing.JButton();
         btnGuias = new javax.swing.JButton();
         btnConfiguracion = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
+        btnConsultaGuia = new javax.swing.JButton();
         labelImagen = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
 
@@ -60,17 +60,20 @@ public class Ventana extends javax.swing.JFrame {
 
         panelMenu.setBackground(new java.awt.Color(0, 0, 153));
 
-        btnClientes.setText("jButton1");
+        btnClientes.setBackground(new java.awt.Color(127, 241, 82));
+        btnClientes.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnClientes.setForeground(new java.awt.Color(39, 57, 131));
+        btnClientes.setText("CLIENTES");
         btnClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClientesActionPerformed(evt);
             }
         });
 
-        btnGuias.setBackground(new java.awt.Color(51, 255, 0));
-        btnGuias.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnGuias.setForeground(new java.awt.Color(0, 0, 102));
-        btnGuias.setText("TEXTO");
+        btnGuias.setBackground(new java.awt.Color(127, 241, 82));
+        btnGuias.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnGuias.setForeground(new java.awt.Color(39, 57, 131));
+        btnGuias.setText("GUIAS");
         btnGuias.setBorderPainted(false);
         btnGuias.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuias.addActionListener(new java.awt.event.ActionListener() {
@@ -79,14 +82,25 @@ public class Ventana extends javax.swing.JFrame {
             }
         });
 
-        btnConfiguracion.setText("jButton1");
+        btnConfiguracion.setBackground(new java.awt.Color(127, 241, 82));
+        btnConfiguracion.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnConfiguracion.setForeground(new java.awt.Color(39, 57, 131));
+        btnConfiguracion.setText("CONFIGURACION");
         btnConfiguracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConfiguracionActionPerformed(evt);
             }
         });
 
-        btnSalir.setText("jButton1");
+        btnConsultaGuia.setBackground(new java.awt.Color(127, 241, 82));
+        btnConsultaGuia.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        btnConsultaGuia.setForeground(new java.awt.Color(39, 57, 131));
+        btnConsultaGuia.setText("CONSULTAR GUIAS");
+        btnConsultaGuia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaGuiaActionPerformed(evt);
+            }
+        });
 
         labelImagen.setText("jLabel1");
 
@@ -97,27 +111,30 @@ public class Ventana extends javax.swing.JFrame {
             .addGroup(panelMenuLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addComponent(labelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(158, 158, 158)
-                .addComponent(btnGuias)
                 .addGap(127, 127, 127)
-                .addComponent(btnClientes)
-                .addGap(68, 68, 68)
+                .addComponent(btnGuias, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(btnClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addComponent(btnConfiguracion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 403, Short.MAX_VALUE)
-                .addComponent(btnSalir)
-                .addGap(195, 195, 195))
+                .addGap(45, 45, 45)
+                .addComponent(btnConsultaGuia)
+                .addContainerGap(305, Short.MAX_VALUE))
         );
         panelMenuLayout.setVerticalGroup(
             panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelMenuLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(35, Short.MAX_VALUE)
+                .addComponent(labelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18))
+            .addGroup(panelMenuLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addGroup(panelMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClientes)
                     .addComponent(btnConfiguracion)
-                    .addComponent(btnSalir)
                     .addComponent(btnGuias)
-                    .addComponent(labelImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(12, 12, 12))
+                    .addComponent(btnConsultaGuia))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         content.setBackground(new java.awt.Color(255, 255, 255));
@@ -180,6 +197,10 @@ public class Ventana extends javax.swing.JFrame {
         MostrarPanel.showPanel(content, new panelConfiguracion(), 1500, 775);
     }//GEN-LAST:event_btnConfiguracionActionPerformed
 
+    private void btnConsultaGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaGuiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultaGuiaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -220,8 +241,8 @@ public class Ventana extends javax.swing.JFrame {
     private javax.swing.JPanel background;
     private javax.swing.JButton btnClientes;
     private javax.swing.JButton btnConfiguracion;
+    private javax.swing.JButton btnConsultaGuia;
     private javax.swing.JButton btnGuias;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JPanel content;
     private javax.swing.JLabel labelImagen;
     private javax.swing.JPanel panelMenu;
