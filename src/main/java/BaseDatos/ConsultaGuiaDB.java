@@ -1,0 +1,111 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package BaseDatos;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+/**
+ *
+ * @author joaqu
+ */
+public class ConsultaGuiaDB {
+
+public ArrayList<Object[]> getDatos() {
+    ArrayList<Object[]> listaDatosVista = new ArrayList<>();
+    Connection conex = null;
+    try {
+        conex = Conexion.conectar();
+        String query = "SELECT g.idguias, g.fecha, g.remitente_localidad, g.destinatario_localidad, " +
+                       "cr.nombre AS remitente, cd.nombre AS destinatario, g.seguro, g.flete, " +
+                       "g.recargo, g.valor_declarado, g.contrareembolso " +
+                       "FROM guias g " +
+                       "JOIN clientes cr ON g.remitente_dni = cr.dni " +
+                       "JOIN clientes cd ON g.destinatario_dni = cd.dni";
+        PreparedStatement psq = conex.prepareStatement(query);
+        ResultSet rs = psq.executeQuery();
+        while (rs.next()) {
+            Object ob[] = new Object[11];
+            ob[0] = rs.getString("idguias");
+            ob[1] = rs.getString("fecha");
+            ob[2] = rs.getString("remitente_localidad");
+            ob[3] = rs.getString("destinatario_localidad");
+            ob[4] = rs.getString("remitente");
+            ob[5] = rs.getString("destinatario");
+            ob[6] = rs.getString("seguro");
+            ob[7] = rs.getString("flete");
+            ob[8] = rs.getString("recargo");
+            ob[9] = rs.getString("valor_declarado");
+            ob[10] = rs.getString("contrareembolso");
+            listaDatosVista.add(ob);
+        }
+    } catch (SQLException e) {
+        System.out.println("EXCEP SQL: " + e);
+        JOptionPane.showMessageDialog(null, "¡Error! Contacte al administrador");
+    } finally {
+        try {
+            if (conex != null) {
+                conex.close();
+            }
+        } catch (SQLException excSql) {
+            System.err.println("ERROR SQL: " + excSql);
+        }
+    }
+    return listaDatosVista;
+}
+
+
+
+public ArrayList<Object[]> buscarGuia(String numeroGuia) { 
+    ArrayList<Object[]> listaDatosVista = new ArrayList<>();
+    Connection conex = null;
+    try {
+        conex = Conexion.conectar();
+        String query = "SELECT g.idguias, g.fecha, g.remitente_localidad, g.destinatario_localidad, " +
+                       "cr.nombre AS remitente, cd.nombre AS destinatario, g.seguro, g.flete, " +
+                       "g.recargo, g.valor_declarado, g.contrareembolso " +
+                       "FROM guias g " +
+                       "JOIN clientes cr ON g.remitente_dni = cr.dni " +
+                       "JOIN clientes cd ON g.destinatario_dni = cd.dni " +
+                       "WHERE g.idguias = ?";
+        PreparedStatement psq = conex.prepareStatement(query);
+        psq.setString(1, "%" + numeroGuia + "%"); // Búsqueda parcial
+        ResultSet rs = psq.executeQuery();
+        while (rs.next()) {
+            Object[] ob = new Object[11];
+            ob[0] = rs.getString("idguias");
+            ob[1] = rs.getString("fecha");
+            ob[2] = rs.getString("remitente_localidad");
+            ob[3] = rs.getString("destinatario_localidad");
+            ob[4] = rs.getString("remitente");
+            ob[5] = rs.getString("destinatario");
+            ob[6] = rs.getString("seguro");
+            ob[7] = rs.getString("flete");
+            ob[8] = rs.getString("recargo");
+            ob[9] = rs.getString("valor_declarado");
+            ob[10] = rs.getString("contrareembolso");
+            listaDatosVista.add(ob);
+        }
+    } catch (SQLException e) {
+        System.out.println("EXCEP SQL: " + e);
+        JOptionPane.showMessageDialog(null, "¡Error al buscar la guía! Contacte al administrador");
+    } finally {
+        try {
+            if (conex != null) {
+                conex.close();
+            }
+        } catch (SQLException excSql) {
+            System.err.println("ERROR SQL: " + excSql);
+        }
+    }
+    return listaDatosVista;
+}
+
+    
+}
