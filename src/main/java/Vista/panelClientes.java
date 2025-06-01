@@ -79,7 +79,7 @@ public class panelClientes extends javax.swing.JPanel {
         tabla.setModel(modelo);
     }*/
     
-    private void actualizarTabla() {
+    void actualizarTabla() {
         modelo.setRowCount(0);
         tablaClientes = new javax.swing.JTable();
         tablaClientes.setModel(modelo);
@@ -362,11 +362,11 @@ public class panelClientes extends javax.swing.JPanel {
             tablaClientes.getValueAt(filaSeleccionada, 3), // Localidad
             tablaClientes.getValueAt(filaSeleccionada, 4)  // Teléfono
         };
-        MostrarPanel.showPanel(subContent, new panelModificacionClientes(cliente, ctrlClientes), 250, 775);
+        MostrarPanel.showPanel(subContent, new panelModificacionClientes(cliente, ctrlClientes, this), 250, 775);
     }//GEN-LAST:event_botonEditarClienteActionPerformed
 
     private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
-        MostrarPanel.showPanel(subContent, new panelAgregarCliente(), 250, 775);
+        MostrarPanel.showPanel(subContent, new panelAgregarCliente(this), 250, 775);
     }//GEN-LAST:event_botonAgregarClienteActionPerformed
     
 

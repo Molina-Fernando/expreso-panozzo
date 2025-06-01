@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import Controlador.ClientesControlador;
 import static Controlador.ClientesControlador.crearCliente;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -15,10 +16,12 @@ import javax.swing.JOptionPane;
  */
 public class panelAgregarCliente extends javax.swing.JPanel {
 
+    private panelClientes panelPadre;
     /**
      * Creates new form panelAgregarCliente
      */
-    public panelAgregarCliente() {
+    public panelAgregarCliente(panelClientes padre) {
+        this.panelPadre = padre;
         initComponents();
         // Llenado del combo
         ArrayList<String> localidades = new ClientesControlador().traerLocalidades();
@@ -29,14 +32,48 @@ public class panelAgregarCliente extends javax.swing.JPanel {
     }
 
     private void agregarCliente(){
-        String dni = TextDNI.getText().trim(); // DNI original
-        String nombre = TextNombre.getText().trim();
-        String domicilio = TextDomicilio.getText().trim();
-        String localidad = comboLocalidad.getSelectedItem().toString();
-        String telefono = TextTelefono.getText().trim();
+    String dni = TextDNI.getText().trim();
+    String nombre = TextNombre.getText().trim();
+    String domicilio = TextDomicilio.getText().trim();
+    String localidad = (String) comboLocalidad.getSelectedItem();
+    String telefono = TextTelefono.getText().trim();
+
+    // Validaciones básicas
+    if (dni.isEmpty() || nombre.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "DNI y nombre son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (!dni.matches("\\d{7,9}")) {
+        JOptionPane.showMessageDialog(this, "El DNI debe contener solo números.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (!telefono.isEmpty() && !telefono.matches("\\d{10}")) {
+        JOptionPane.showMessageDialog(this, "El teléfono debe contener solo números.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    boolean resultado = ClientesControlador.crearCliente(dni, nombre, domicilio, localidad, telefono);
+    if (resultado) {
+        JOptionPane.showMessageDialog(this, "Cliente agregado correctamente.");
+        limpiarCampos();
+        if (panelPadre != null) {
+            panelPadre.actualizarTabla();}
         
-        crearCliente(dni, nombre, domicilio, localidad, telefono);
-        }
+    } else {
+        JOptionPane.showMessageDialog(this, "No se pudo agregar el cliente. Puede que ya exista el DNI.", "Error", JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+    private void limpiarCampos() {
+        TextDNI.setText("");
+        TextNombre.setText("");
+        TextDomicilio.setText("");
+        TextTelefono.setText("");
+        comboLocalidad.setSelectedIndex(0);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
