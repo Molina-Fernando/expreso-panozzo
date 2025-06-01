@@ -36,4 +36,8 @@ public class ClientesControlador {
     public ArrayList<String> traerLocalidades() {
         return new ClienteDB().obtenerLocalidades();
     }
+    
+    public static boolean crearCliente(String dni, String nombre, String domicilio, String localidad, String telefono){
+        return new ClienteDB().agregarCliente(dni, nombre, domicilio, localidad, telefono);
+    }
 }

@@ -79,7 +79,7 @@ public class panelClientes extends javax.swing.JPanel {
         tabla.setModel(modelo);
     }*/
     
-    private void actualizarTabla() {
+    void actualizarTabla() {
         modelo.setRowCount(0);
         tablaClientes = new javax.swing.JTable();
         tablaClientes.setModel(modelo);
@@ -136,7 +136,7 @@ public class panelClientes extends javax.swing.JPanel {
 
         content = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        mo = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         botonAgregarCliente = new javax.swing.JButton();
         botonEditarCliente = new javax.swing.JButton();
@@ -159,8 +159,8 @@ public class panelClientes extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         jLabel1.setText("LISTA DE CLIENTES REGISTRADOS");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(800, 775));
+        mo.setBackground(new java.awt.Color(255, 255, 255));
+        mo.setPreferredSize(new java.awt.Dimension(800, 775));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -236,14 +236,14 @@ public class panelClientes extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout moLayout = new javax.swing.GroupLayout(mo);
+        mo.setLayout(moLayout);
+        moLayout.setHorizontalGroup(
+            moLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(moLayout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(moLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(moLayout.createSequentialGroup()
                         .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -253,24 +253,24 @@ public class panelClientes extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(217, 217, 217))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(moLayout.createSequentialGroup()
                 .addGap(258, 258, 258)
                 .addComponent(botonAgregarCliente)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        moLayout.setVerticalGroup(
+            moLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(moLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(moLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(moLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(moLayout.createSequentialGroup()
                         .addGap(195, 195, 195)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(moLayout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
@@ -298,7 +298,7 @@ public class panelClientes extends javax.swing.JPanel {
             .addGroup(contentLayout.createSequentialGroup()
                 .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(mo, javax.swing.GroupLayout.PREFERRED_SIZE, 719, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(contentLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -312,7 +312,7 @@ public class panelClientes extends javax.swing.JPanel {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(mo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30))
             .addGroup(contentLayout.createSequentialGroup()
                 .addComponent(subContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -362,11 +362,11 @@ public class panelClientes extends javax.swing.JPanel {
             tablaClientes.getValueAt(filaSeleccionada, 3), // Localidad
             tablaClientes.getValueAt(filaSeleccionada, 4)  // Teléfono
         };
-        MostrarPanel.showPanel(subContent, new panelModificacionClientes(cliente, ctrlClientes), 250, 775);
+        MostrarPanel.showPanel(subContent, new panelModificacionClientes(cliente, ctrlClientes, this), 250, 775);
     }//GEN-LAST:event_botonEditarClienteActionPerformed
 
     private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
-        
+        MostrarPanel.showPanel(subContent, new panelAgregarCliente(this), 250, 775);
     }//GEN-LAST:event_botonAgregarClienteActionPerformed
     
 
@@ -377,9 +377,9 @@ public class panelClientes extends javax.swing.JPanel {
     private javax.swing.JTextField campoTextoBuscar;
     private javax.swing.JPanel content;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPanel mo;
     private javax.swing.JPanel subContent;
     private javax.swing.JTable tablaClientes;
     // End of variables declaration//GEN-END:variables

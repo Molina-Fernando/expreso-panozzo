@@ -781,7 +781,7 @@ public class panelGuia extends javax.swing.JPanel {
         )) {
             JOptionPane.showMessageDialog(null, "Guía emitida con éxito.");
         } else {
-            JOptionPane.showMessageDialog(null, "Error, nose que mierda paso");
+            JOptionPane.showMessageDialog(null, "Error");
         }
     }//GEN-LAST:event_botonEmitirGuiaActionPerformed
 
@@ -834,7 +834,7 @@ public class panelGuia extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "El DNI no es válido");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Coloque el DNI");
+            JOptionPane.showMessageDialog(null, "Ingrese el DNI");
         }
 
     }//GEN-LAST:event_botonBuscarRActionPerformed
