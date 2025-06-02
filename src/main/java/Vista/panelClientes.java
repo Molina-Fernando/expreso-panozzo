@@ -334,21 +334,21 @@ public class panelClientes extends javax.swing.JPanel {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         DefaultTableModel modelo = buscarCliente();
-        if (modelo.getRowCount() == 0)
+        if (modelo.getRowCount() == 0){
             JOptionPane.showMessageDialog(null, "Cliente no registrado", "Resultado de la búsqueda", JOptionPane.INFORMATION_MESSAGE);
-            actualizarTabla();
+            actualizarTabla();}
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void campoTextoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoBuscarActionPerformed
         DefaultTableModel modelo = buscarCliente();
-        if (modelo.getRowCount() == 0)
+        if (modelo.getRowCount() == 0){
             JOptionPane.showMessageDialog(null, "Cliente no registrado", "Resultado de la búsqueda", JOptionPane.INFORMATION_MESSAGE);
             actualizarTabla();
         /*if (modelo.getRowCount() > 0) {
             mostrarBotones();
         } else {
             ocultarBotones();
-        }*/
+        }*/}
     }//GEN-LAST:event_campoTextoBuscarActionPerformed
 
     private void botonEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarClienteActionPerformed

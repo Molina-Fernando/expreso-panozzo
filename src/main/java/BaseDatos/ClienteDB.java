@@ -69,7 +69,9 @@ public class ClienteDB {
             ob[3] = rs.getString("localidad");
             ob[4] = rs.getString("telefono");
             listaClientes.add(ob);
+            
         }
+
     } catch (SQLException e) {
         System.out.println("EXCEP SQL" + e);
         JOptionPane.showMessageDialog(null, "¡Error! Contacte al administrador");
