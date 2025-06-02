@@ -28,13 +28,13 @@ public class panelClientes extends javax.swing.JPanel {
     public panelClientes() {
         initComponents();
         // Placeholder para el campo de búsqueda
-        campoTextoBuscar.setText("Ingrese aquí el nombre del cliente");
+        campoTextoBuscar.setText(" Ingrese aquí el nombre del cliente");
         campoTextoBuscar.setForeground(Color.GRAY);
 
         campoTextoBuscar.addFocusListener(new java.awt.event.FocusAdapter() {
             @Override
             public void focusGained(java.awt.event.FocusEvent e) {
-                if (campoTextoBuscar.getText().equals("Ingrese aquí el nombre del cliente")) {
+                if (campoTextoBuscar.getText().equals(" Ingrese aquí el nombre del cliente")) {
                     campoTextoBuscar.setText("");
                     campoTextoBuscar.setForeground(Color.BLACK);
                 }
@@ -44,7 +44,7 @@ public class panelClientes extends javax.swing.JPanel {
             public void focusLost(java.awt.event.FocusEvent e) {
                 if (campoTextoBuscar.getText().isEmpty()) {
                     campoTextoBuscar.setForeground(Color.GRAY);
-                    campoTextoBuscar.setText("Ingrese aquí el nombre del cliente");
+                    campoTextoBuscar.setText(" Ingrese aquí el nombre del cliente");
                 }
             }
         });
@@ -103,6 +103,7 @@ public class panelClientes extends javax.swing.JPanel {
                 new Object[][] {},
                 new String[] { "DNI", "Nombre", "Domicilio", "Localidad", "Teléfono" }
             );
+        
             tablaClientes.setModel(modeloVacio);
             return modeloVacio;
         }
@@ -246,8 +247,8 @@ public class panelClientes extends javax.swing.JPanel {
                     .addGroup(moLayout.createSequentialGroup()
                         .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
+                        .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(60, 60, 60)
                         .addComponent(botonEditarCliente))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 581, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -301,9 +302,9 @@ public class panelClientes extends javax.swing.JPanel {
                         .addComponent(mo, javax.swing.GroupLayout.PREFERRED_SIZE, 719, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(contentLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
+                        .addGap(39, 39, 39)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 310, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(subContent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         contentLayout.setVerticalGroup(
@@ -333,15 +334,16 @@ public class panelClientes extends javax.swing.JPanel {
 
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         DefaultTableModel modelo = buscarCliente();
-        /*if (modelo.getRowCount() > 0) {
-            mostrarBotones();
-        } else {
-            ocultarBotones();
-        }*/
+        if (modelo.getRowCount() == 0)
+            JOptionPane.showMessageDialog(null, "Cliente no registrado", "Resultado de la búsqueda", JOptionPane.INFORMATION_MESSAGE);
+            actualizarTabla();
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void campoTextoBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoTextoBuscarActionPerformed
         DefaultTableModel modelo = buscarCliente();
+        if (modelo.getRowCount() == 0)
+            JOptionPane.showMessageDialog(null, "Cliente no registrado", "Resultado de la búsqueda", JOptionPane.INFORMATION_MESSAGE);
+            actualizarTabla();
         /*if (modelo.getRowCount() > 0) {
             mostrarBotones();
         } else {
@@ -362,11 +364,11 @@ public class panelClientes extends javax.swing.JPanel {
             tablaClientes.getValueAt(filaSeleccionada, 3), // Localidad
             tablaClientes.getValueAt(filaSeleccionada, 4)  // Teléfono
         };
-        MostrarPanel.showPanel(subContent, new panelModificacionClientes(cliente, ctrlClientes, this), 250, 775);
+        MostrarPanel.showPanel(subContent, new panelModificacionClientes(cliente, ctrlClientes, this), 500, 775);
     }//GEN-LAST:event_botonEditarClienteActionPerformed
 
     private void botonAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAgregarClienteActionPerformed
-        MostrarPanel.showPanel(subContent, new panelAgregarCliente(this), 250, 775);
+        MostrarPanel.showPanel(subContent, new panelAgregarCliente(this), 500, 775);
     }//GEN-LAST:event_botonAgregarClienteActionPerformed
     
 
