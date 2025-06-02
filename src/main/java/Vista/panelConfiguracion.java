@@ -66,6 +66,7 @@ public class panelConfiguracion extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         campoLocalidad = new javax.swing.JTextField();
         botonAgregarLocalidades = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setForeground(new java.awt.Color(204, 153, 255));
         setMaximumSize(new java.awt.Dimension(1500, 775));
@@ -115,7 +116,9 @@ public class panelConfiguracion extends javax.swing.JPanel {
             }
         });
 
-        botonActualizarCostos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonActualizarCostos.setBackground(new java.awt.Color(0, 46, 83));
+        botonActualizarCostos.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonActualizarCostos.setForeground(new java.awt.Color(127, 241, 82));
         botonActualizarCostos.setText("ACTUALIZAR");
         botonActualizarCostos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,13 +148,17 @@ public class panelConfiguracion extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("LOCALIDAD");
 
-        botonAgregarLocalidades.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        botonAgregarLocalidades.setBackground(new java.awt.Color(0, 46, 83));
+        botonAgregarLocalidades.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonAgregarLocalidades.setForeground(new java.awt.Color(127, 241, 82));
         botonAgregarLocalidades.setText("AGREGAR");
         botonAgregarLocalidades.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonAgregarLocalidadesActionPerformed(evt);
             }
         });
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -169,15 +176,19 @@ public class panelConfiguracion extends javax.swing.JPanel {
                             .addComponent(CampoCostoTipo2)
                             .addComponent(CampoCostoTipo3)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(287, 287, 287)
+                        .addGap(286, 286, 286)
                         .addComponent(botonActualizarCostos)))
+                .addGap(235, 235, 235)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 267, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(campoLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonAgregarLocalidades))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(54, 54, 54)
+                        .addComponent(botonAgregarLocalidades)))
                 .addGap(119, 119, 119))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(132, 132, 132)
@@ -220,6 +231,7 @@ public class panelConfiguracion extends javax.swing.JPanel {
                                 .addComponent(botonAgregarLocalidades))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(176, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -317,6 +329,7 @@ public class panelConfiguracion extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tablaLocalidades;
     // End of variables declaration//GEN-END:variables
 }

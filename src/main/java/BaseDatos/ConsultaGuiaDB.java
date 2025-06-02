@@ -114,7 +114,7 @@ public class ConsultaGuiaDB {
         // Mapeo del criterio a la columna SQL
         String columnaOrden = switch (criterio) {
             case "Nº Guía" -> "g.idguias";
-            case "Fecha" -> "g.fecha";
+            case "Fecha" -> "SUBSTR(g.fecha, 7, 4) DESC, SUBSTR(g.fecha, 4, 2) DESC, SUBSTR(g.fecha, 1, 2) DESC";
             case "Origen" -> "g.remitente_localidad";
             case "Destino" -> "g.destinatario_localidad";
             case "Remitente" -> "c1.nombre"; // tabla clientes, alias c1
