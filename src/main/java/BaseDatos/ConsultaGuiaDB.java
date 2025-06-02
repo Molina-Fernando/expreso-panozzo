@@ -75,7 +75,7 @@ public class ConsultaGuiaDB {
                            "JOIN clientes cd ON g.destinatario_dni = cd.dni " +
                            "WHERE g.idguias = ?";
             PreparedStatement psq = conex.prepareStatement(query);
-            psq.setString(1, "%" + numeroGuia + "%"); // Búsqueda parcial
+            psq.setString(1, numeroGuia);
             ResultSet rs = psq.executeQuery();
             while (rs.next()) {
                 Object[] ob = new Object[11];
@@ -113,13 +113,13 @@ public class ConsultaGuiaDB {
 
         // Mapeo del criterio a la columna SQL
         String columnaOrden = switch (criterio) {
-            case "Nº Guía" -> "guias.idguias";
-            case "Fecha" -> "guias.fecha";
-            case "Origen" -> "remitente_localidad";
-            case "Destino" -> "destinatario_localidad";
+            case "Nº Guía" -> "g.idguias";
+            case "Fecha" -> "g.fecha";
+            case "Origen" -> "g.remitente_localidad";
+            case "Destino" -> "g.destinatario_localidad";
             case "Remitente" -> "c1.nombre"; // tabla clientes, alias c1
             case "Destinatario" -> "c2.nombre"; // tabla clientes, alias c2
-            default -> "guias.idguias";
+            default -> "g.idguias";
         };
 
         try {
@@ -143,7 +143,7 @@ public class ConsultaGuiaDB {
                     clientes c1 ON g.remitente_dni = c1.dni
                 INNER JOIN 
                     clientes c2 ON g.destinatario_dni = c2.dni
-                ORDER BY """ + columnaOrden;
+                ORDER BY """ +" "+ columnaOrden;
 
             PreparedStatement psq = conex.prepareStatement(query);
             ResultSet rs = psq.executeQuery();

@@ -89,7 +89,7 @@ public class panelConsultaGuias extends javax.swing.JPanel {
             // Devuelve una tabla vacía
             DefaultTableModel modeloVacio = new DefaultTableModel(
                 new Object[][] {},
-                new String[] { "Nº Guía", "Fecha","DNI","Origen","Destino","Remitente","Destinatario","Seguro","Flete","Recargo","Valor Declarado","Contrareembolso"}
+                new String[] { "Nº Guía", "Fecha","Origen","Destino","Remitente","Destinatario","Seguro","Flete","Recargo","Valor Declarado","Contrareembolso"}
             );
             tablaConsultaGuias.setModel(modeloVacio);
             return modeloVacio;
@@ -125,7 +125,6 @@ public class panelConsultaGuias extends javax.swing.JPanel {
         content = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        botonEditarCliente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaConsultaGuias = new javax.swing.JTable();
         campoTextoBuscar = new javax.swing.JTextField();
@@ -149,16 +148,6 @@ public class panelConsultaGuias extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 775));
-
-        botonEditarCliente.setBackground(new java.awt.Color(0, 46, 83));
-        botonEditarCliente.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        botonEditarCliente.setForeground(new java.awt.Color(127, 241, 82));
-        botonEditarCliente.setText("EDITAR GUÍA");
-        botonEditarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonEditarClienteActionPerformed(evt);
-            }
-        });
 
         tablaConsultaGuias.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         tablaConsultaGuias.setModel(new javax.swing.table.DefaultTableModel(
@@ -228,9 +217,7 @@ public class panelConsultaGuias extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1419, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1419, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -238,10 +225,8 @@ public class panelConsultaGuias extends javax.swing.JPanel {
                         .addGap(164, 164, 164)
                         .addComponent(botonOrdenarPor, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(comboOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botonEditarCliente)))
-                .addContainerGap())
+                        .addComponent(comboOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +235,6 @@ public class panelConsultaGuias extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(campoTextoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonEditarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonOrdenarPor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(comboOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -280,7 +264,7 @@ public class panelConsultaGuias extends javax.swing.JPanel {
             .addGroup(contentLayout.createSequentialGroup()
                 .addGroup(contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contentLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1470, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1471, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(contentLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
@@ -321,30 +305,6 @@ public class panelConsultaGuias extends javax.swing.JPanel {
         DefaultTableModel modelo = buscarGuia();
     }//GEN-LAST:event_campoTextoBuscarActionPerformed
 
-    private void botonEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonEditarClienteActionPerformed
-        int filaSeleccionada = tablaConsultaGuias.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(this, "Por favor seleccione una guía para modificar.");
-            return;
-        }
-        //De acá en adelante la lógica es similar a lo que vamos a tener que hacer
-        //para poder abri una ventana con todos los datos de la guía para poder modificarla
-        Object[] guia = new Object[] {
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 0), // numeroguia
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 1), // fecha
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 2), // origen
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 3), // destino
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 4), // remitente
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 5), // destinatario
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 6), // seguro
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 7), // flete
-            tablaConsultaGuias.getValueAt(filaSeleccionada,8), // recargo
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 9),  // valor declarado
-            tablaConsultaGuias.getValueAt(filaSeleccionada, 10),  // contrareembolso
-        };
-        //MostrarPanel.showPanel(subContent, new panelModificacionClientes(guia, ctrl), 250, 775);
-    }//GEN-LAST:event_botonEditarClienteActionPerformed
-
     private void botonOrdenarPorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOrdenarPorActionPerformed
         String criterio = comboOrdenar.getSelectedItem().toString();
         actualizarTablaOrdenada(criterio);
@@ -358,7 +318,6 @@ public class panelConsultaGuias extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonEditarCliente;
     private javax.swing.JButton botonOrdenarPor;
     private javax.swing.JTextField campoTextoBuscar;
     private javax.swing.JComboBox<String> comboOrdenar;
