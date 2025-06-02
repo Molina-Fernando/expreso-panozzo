@@ -48,6 +48,22 @@ public class panelModificacionClientes extends javax.swing.JPanel {
     String localidad = comboLocalidad.getSelectedItem().toString();
     String telefono = TextTelefono.getText().trim();
 
+        // Validaciones básicas
+    if (dni.isEmpty() || nombre.isEmpty() || domicilio.isEmpty() || telefono.isEmpty() || localidad.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (!dni.matches("\\d{7,9}")) {
+        JOptionPane.showMessageDialog(this, "El DNI debe contener entre 7 y 9 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    if (!telefono.matches("\\d{10}")) {
+        JOptionPane.showMessageDialog(this, "El teléfono debe contener 10 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+    
     boolean exito = ClientesControlador.actualizarCliente(dni, nombre, domicilio, localidad, telefono);
     if (exito) {
         JOptionPane.showMessageDialog(this, "Cliente actualizado correctamente.");
@@ -80,13 +96,13 @@ public class panelModificacionClientes extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         comboLocalidad = new javax.swing.JComboBox<>();
         botonConfirmacion = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        botonCancelar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setToolTipText("");
-        setMaximumSize(new java.awt.Dimension(250, 775));
-        setMinimumSize(new java.awt.Dimension(250, 775));
-        setPreferredSize(new java.awt.Dimension(250, 775));
+        setMaximumSize(new java.awt.Dimension(500, 775));
+        setMinimumSize(new java.awt.Dimension(500, 775));
+        setPreferredSize(new java.awt.Dimension(500, 775));
         setVerifyInputWhenFocusTarget(false);
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
@@ -147,76 +163,80 @@ public class panelModificacionClientes extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(0, 46, 83));
-        jButton1.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(127, 241, 82));
-        jButton1.setText("CANCELAR");
+        botonCancelar.setBackground(new java.awt.Color(0, 46, 83));
+        botonCancelar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonCancelar.setForeground(new java.awt.Color(127, 241, 82));
+        botonCancelar.setText("CANCELAR");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(265, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(TextNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(3, 3, 3)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel6)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(comboLocalidad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(TextTelefono, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TextDomicilio, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(TextDNI, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))))))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonConfirmacion)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(botonConfirmacion)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(comboLocalidad, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(TextTelefono, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(TextDomicilio, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(TextDNI, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(57, 57, 57)
-                                .addComponent(jButton1)))
-                        .addGap(0, 9, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(TextNombre)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(48, 48, 48)
+                                .addComponent(botonCancelar)))
+                        .addGap(29, 29, 29))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(40, 40, 40)
                 .addComponent(botonConfirmacion, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(217, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -240,15 +260,19 @@ public class panelModificacionClientes extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_TextNombreActionPerformed
 
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextDNI;
     private javax.swing.JTextField TextDomicilio;
     private javax.swing.JTextField TextNombre;
     private javax.swing.JTextField TextTelefono;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JButton botonConfirmacion;
     private javax.swing.JComboBox<String> comboLocalidad;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

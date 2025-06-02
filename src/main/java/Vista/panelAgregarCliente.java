@@ -39,18 +39,18 @@ public class panelAgregarCliente extends javax.swing.JPanel {
     String telefono = TextTelefono.getText().trim();
 
     // Validaciones básicas
-    if (dni.isEmpty() || nombre.isEmpty()) {
-        JOptionPane.showMessageDialog(this, "DNI y nombre son obligatorios.", "Error", JOptionPane.ERROR_MESSAGE);
+    if (dni.isEmpty() || nombre.isEmpty() || domicilio.isEmpty() || telefono.isEmpty() || localidad.isEmpty()) {
+        JOptionPane.showMessageDialog(this, "Por favor complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
     if (!dni.matches("\\d{7,9}")) {
-        JOptionPane.showMessageDialog(this, "El DNI debe contener solo números.", "Error", JOptionPane.ERROR_MESSAGE);
+        JOptionPane.showMessageDialog(this, "El DNI debe contener entre 7 y 9 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
-    if (!telefono.isEmpty() && !telefono.matches("\\d{10}")) {
-        JOptionPane.showMessageDialog(this, "El teléfono debe contener solo números.", "Error", JOptionPane.ERROR_MESSAGE);
+    if (!telefono.matches("\\d{10}")) {
+        JOptionPane.showMessageDialog(this, "El teléfono debe contener 10 dígitos.", "Error", JOptionPane.ERROR_MESSAGE);
         return;
     }
 
@@ -95,10 +95,12 @@ public class panelAgregarCliente extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         botonAgregarCliente = new javax.swing.JButton();
         comboLocalidad = new javax.swing.JComboBox<>();
+        botonCancelar = new javax.swing.JButton();
 
-        setMaximumSize(new java.awt.Dimension(250, 775));
-        setMinimumSize(new java.awt.Dimension(250, 775));
-        setPreferredSize(new java.awt.Dimension(250, 775));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setMaximumSize(new java.awt.Dimension(500, 775));
+        setMinimumSize(new java.awt.Dimension(500, 775));
+        setPreferredSize(new java.awt.Dimension(500, 775));
 
         jLabel1.setFont(new java.awt.Font("Cambria", 1, 24)); // NOI18N
         jLabel1.setText("DATOS DEL CIENTE");
@@ -113,7 +115,7 @@ public class panelAgregarCliente extends javax.swing.JPanel {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("NOMBRE");
+        jLabel3.setText("NOMBRE COMPLETO");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel4.setText("DOMICILIO");
@@ -146,17 +148,24 @@ public class panelAgregarCliente extends javax.swing.JPanel {
             }
         });
 
+        botonCancelar.setBackground(new java.awt.Color(0, 46, 83));
+        botonCancelar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        botonCancelar.setForeground(new java.awt.Color(127, 241, 82));
+        botonCancelar.setText("CANCELAR");
+        botonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonCancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(282, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(botonAgregarCliente))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -168,37 +177,46 @@ public class panelAgregarCliente extends javax.swing.JPanel {
                             .addComponent(TextTelefono)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addComponent(comboLocalidad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                            .addComponent(comboLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botonAgregarCliente, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(botonCancelar)
+                                .addGap(31, 31, 31)))
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(46, 46, 46)
                 .addComponent(jLabel1)
-                .addGap(48, 48, 48)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(TextTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboLocalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53)
-                .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(176, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(botonAgregarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(botonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(222, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -214,9 +232,15 @@ public class panelAgregarCliente extends javax.swing.JPanel {
 
     }//GEN-LAST:event_comboLocalidadActionPerformed
 
+
     private void TextTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextTelefonoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_TextTelefonoActionPerformed
+
+    private void botonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonCancelarActionPerformed
+        this.setVisible(false);
+    }//GEN-LAST:event_botonCancelarActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -225,6 +249,7 @@ public class panelAgregarCliente extends javax.swing.JPanel {
     private javax.swing.JTextField TextNombre;
     private javax.swing.JTextField TextTelefono;
     private javax.swing.JButton botonAgregarCliente;
+    private javax.swing.JButton botonCancelar;
     private javax.swing.JComboBox<String> comboLocalidad;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
