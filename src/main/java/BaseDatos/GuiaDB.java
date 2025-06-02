@@ -145,7 +145,8 @@ public class GuiaDB {
         return nombreTipo;
     }
 
-    public boolean emitirGuia(String costoSeguro,
+    public boolean emitirGuia(String fecha,
+            String costoSeguro,
             String costoFlete,
             String recargo,
             String valor_declarado,
@@ -160,21 +161,21 @@ public class GuiaDB {
             conex = Conexion.conectar();
 
             String insertGuia = "INSERT INTO guias"
-                    + "(seguro, flete, recargo, valor_declarado, contrareembolso, remitente_dni, destinatario_dni, remitente_localidad, destinatario_localidad) "
-                    + "VALUES(?,?,?,?,?, ?, ?, ?, ?);";
+                    + "(fecha, seguro, flete, recargo, valor_declarado, contrareembolso, remitente_dni, destinatario_dni, remitente_localidad, destinatario_localidad) "
+                    + "VALUES(?,?,?,?,?, ?, ?, ?, ?, ?);";
 
             PreparedStatement psi = conex.prepareStatement(insertGuia);
             
-            
-            psi.setFloat(1, Float.parseFloat(costoSeguro));
-            psi.setFloat(2, Float.parseFloat(costoFlete));
-            psi.setFloat(3, Float.parseFloat(recargo));
-            psi.setFloat(4, Float.parseFloat(valor_declarado));
-            psi.setFloat(5, Float.parseFloat(contrareembolso));
-            psi.setString(6, remitente_dni);
-            psi.setString(7, destinatario_dni);
-            psi.setString(8, remitente_localidad);
-            psi.setString(9, destinatario_localidad);
+            psi.setString(1,fecha);
+            psi.setFloat(2, Float.parseFloat(costoSeguro));
+            psi.setFloat(3, Float.parseFloat(costoFlete));
+            psi.setFloat(4, Float.parseFloat(recargo));
+            psi.setFloat(5, Float.parseFloat(valor_declarado));
+            psi.setFloat(6, Float.parseFloat(contrareembolso));
+            psi.setString(7, remitente_dni);
+            psi.setString(8, destinatario_dni);
+            psi.setString(9, remitente_localidad);
+            psi.setString(10, destinatario_localidad);
 
             psi.executeUpdate();
 

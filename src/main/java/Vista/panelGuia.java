@@ -808,6 +808,7 @@ public class panelGuia extends javax.swing.JPanel {
 
         if (testigo1 && testigo2) {
             if (new GuiaControlador().emitirGuia(
+                    fechaActual.format(formato),
                     campoSeguro.getValue().toString().trim(),
                     campoFlete.getValue().toString().trim(),
                     campoRecargo.getValue().toString().trim(),

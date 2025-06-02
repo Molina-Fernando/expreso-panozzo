@@ -22,6 +22,7 @@ public class GuiaControlador {
     }
     
     public boolean emitirGuia(
+            String fecha,
             String costoSeguro, 
             String costoFlete, 
             String recargo, 
@@ -32,6 +33,6 @@ public class GuiaControlador {
             String remitente_localidad, 
             String destinatario_localidad){
         
-        return new GuiaDB().emitirGuia(costoSeguro, costoFlete, recargo, valor_declarado, contrareembolso, remitente_dni, destinatario_dni, remitente_localidad, destinatario_localidad);
+        return new GuiaDB().emitirGuia(fecha, costoSeguro, costoFlete, recargo, valor_declarado, contrareembolso, remitente_dni, destinatario_dni, remitente_localidad, destinatario_localidad);
     }
 }
