@@ -16,7 +16,7 @@ public class ConsultaGuiaControlador {
     }
 
     public DefaultTableModel buscarDatosAsociados(String numeroGuia) {
-        String[] columnas = {"Nº Guía", "Fecha","DNI","Origen","Destino","Remitente","Destinatario","Seguro","Flete","Recargo","Valor Declarado","Contrareembolso"};
+        String[] columnas = {"Nº Guía", "Fecha","Origen","Destino","Remitente","Destinatario","Seguro","Flete","Recargo","Valor Declarado","Contrareembolso"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
         
         for (Object[] fila : new ConsultaGuiaDB().buscarGuia(numeroGuia)) {
@@ -24,5 +24,11 @@ public class ConsultaGuiaControlador {
         }
         return modelo;
     }
+
+    public ArrayList<Object[]> getGuiasOrdenadasPor(String criterio) {
+        return new ConsultaGuiaDB().getGuiasOrdenadasPor(criterio);
+    }
+    
+    
     
 }

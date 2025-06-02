@@ -8,7 +8,6 @@ package Vista;
 import Controlador.VentanaControlador;
 import Utilidades.MostrarPanel;
 import Vista.panelGuia;
-import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 /**
@@ -198,7 +197,7 @@ public class Ventana extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConfiguracionActionPerformed
 
     private void btnConsultaGuiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaGuiaActionPerformed
-        // TODO add your handling code here:
+        MostrarPanel.showPanel(content, new panelConsultaGuias(), 1500, 775);
     }//GEN-LAST:event_btnConsultaGuiaActionPerformed
 
     /**
